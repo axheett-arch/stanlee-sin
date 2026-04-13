@@ -17,3 +17,9 @@ Route::get('/contacto', function () {
 });
 
 Route::post('/contacto', [ContactoController::class, 'procesar']);
+
+Route::get('/', function () {
+    return view('layouts.principal');
+});
+
+

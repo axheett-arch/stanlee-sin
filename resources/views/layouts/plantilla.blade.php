@@ -11,7 +11,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-magenta">
         <div class="container">
-            <a class="navbar-brand Hansip" href="/" style="color: #ff00ff; font-size: 2rem;">STANLEY</a>
+            <a class="navbar-brand Hansip" href="/" style="color: #c80d55; font-size: 2rem;">STANLEY</a>
             <div class="navbar-nav">
                 <a class="nav-link" href="/">Inicio</a>
                 <a class="nav-link" href="/catalogo">Catálogo</a>
@@ -25,9 +25,10 @@
     </div>
 
     <footer class="text-center py-4 mt-5 border-top border-secondary text-secondary">
-        <p>&copy; 2026 Stanley Corrientes - Axel Gomez</p>
+        <p>&copy; 2026 Stanlee Sin - Axel & Tiago</p>
     </footer>
 
 </body>
 </html>
+
 

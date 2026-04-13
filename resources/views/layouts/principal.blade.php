@@ -21,7 +21,7 @@
                 <div class="position-absolute top-50 start-50 translate-middle w-100 h-100"
                      style="background: radial-gradient(circle, rgba(200,13,85,0.3) 0%, transparent 70%); z-index: -1;">
                 </div>
-                <img src="{{ asset('img/termo-hero.png') }}" alt="Termo Stanlee Sin" class="img-fluid floating-anim">
+                <img src="{{ asset('img/Untitled-4 (1).png') }}" alt="Termo Stanlee Sin" class="img-fluid floating-anim">
             </div>
         </div>
     </div>
@@ -44,4 +44,5 @@
         </div>
     </div>
 @endsection
+
 
