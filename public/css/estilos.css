@@ -64,3 +64,45 @@ h1, h2, h3, .hansip-font {
 .min-vh-75 {
     min-height: 75vh;
 }
+
+.floating-anim {
+    /* Esto intenta mezclar lo blanco con el fondo negro */
+    mix-blend-mode: screen;
+    filter: drop-shadow(0 0 15px rgba(200, 13, 85, 0.5));
+}
+
+.termo-legendario {
+    filter: drop-shadow(0 0 20px rgba(200, 13, 85, 0.8)); /* Brillo magenta intenso */
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.termo-legendario:hover {
+    transform: scale(1.05) rotate(2deg); /* Se agranda y gira un toque al pasar el mouse */
+    filter: drop-shadow(0 0 40px rgba(200, 13, 85, 1));
+}
+
+/* Fondo con degradado sutil para que no sea solo negro plano */
+body {
+    background: radial-gradient(circle at top right, #1a1a1a 0%, #000000 100%);
+}
+
+.btn-stanley-legend {
+    background-color: #c80d55;
+    color: white;
+    font-family: 'HansipCustom', sans-serif;
+    font-size: 1.5rem;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 0px; /* Estilo cuadrado, más agresivo */
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%); /* Forma de trapecio */
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-stanley-legend:hover {
+    background-color: white;
+    color: #c80d55;
+    transform: translateX(10px);
+}
+
