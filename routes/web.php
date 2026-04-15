@@ -22,4 +22,6 @@ Route::get('/', function () {
     return view('layouts.principal');
 });
 
+Route::view('/nosotros', 'nosotros');
+
 

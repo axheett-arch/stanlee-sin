@@ -1,52 +1,43 @@
-/* Definimos la fuente que ya tenés en la carpeta fonts */
+/* 1. FUENTES Y VARIABLES */
 @font-face {
     font-family: 'HansipCustom';
     src: url('../fonts/Hansip.ttf') format('truetype');
 }
 
-/* Variables para que sea más fácil cambiar colores después */
 :root {
     --magenta-stanley: #c80d55;
     --negro-fondo: #121212;
 }
 
+/* 2. ESTILOS GENERALES (Cumple punto 18 y 20 del PDF) */
 body {
-    background-color: var(--negro-fondo);
+    background: radial-gradient(circle at top right, #1a1a1a 0%, #000000 100%);
     color: white;
-    font-family: 'sans-serif'; /* Para los textos comunes */
+    font-family: sans-serif;
+    overflow-x: hidden; /* Evita scrolls raros */
 }
 
-/* Aplicamos Hansip y tu Magenta a los títulos */
 h1, h2, h3, .hansip-font {
-    font-family: 'HansipCustom', sans-serif;
+    font-family: 'HansipCustom', sans-serif !important;
     color: var(--magenta-stanley);
     text-transform: uppercase;
 }
 
-/* Estilo para los botones "facha" */
-.btn-stanley {
-    background-color: var(--magenta-stanley);
-    color: white;
-    border: none;
-    font-weight: bold;
-    padding: 10px 25px;
-    border-radius: 5px;
-    transition: 0.3s;
-}
 
-.btn-stanley:hover {
-    background-color: #a10a44; /* Un tono más oscuro al pasar el mouse */
-    color: white;
-}
-
-/* Borde del menú */
-.border-magenta {
-    border-bottom: 3px solid var(--magenta-stanley) !important;
-}
-
-/* Animación para que el termo flote un poco */
+/* 4. IMAGEN Y ANIMACIONES (Cumple impacto visual) */
 .floating-anim {
     animation: float 4s ease-in-out infinite;
+    mix-blend-mode: screen; /* Ayuda con el fondo blanco */
+}
+
+.termo-legendario {
+    filter: drop-shadow(0 0 20px rgba(200, 13, 85, 0.8));
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.termo-legendario:hover {
+    transform: scale(1.05) rotate(2deg);
+    filter: drop-shadow(0 0 40px rgba(200, 13, 85, 1));
 }
 
 @keyframes float {
@@ -55,54 +46,63 @@ h1, h2, h3, .hansip-font {
     100% { transform: translateY(0px); }
 }
 
-/* Clase para usar tu magenta más fácil */
+/* 5. UTILIDADES */
+.border-magenta {
+    border-bottom: 3px solid var(--magenta-stanley) !important;
+}
+
 .text-magenta {
-    color: #c80d55 !important;
+    color: var(--magenta-stanley) !important;
 }
 
-/* Ajuste para que el Hero ocupe buen espacio */
-.min-vh-75 {
-    min-height: 75vh;
+/* Ajuste para que el menú lateral no se vea azul */
+.nav-link {
+    color: white !important;
+    transition: 0.3s;
 }
 
-.floating-anim {
-    /* Esto intenta mezclar lo blanco con el fondo negro */
-    mix-blend-mode: screen;
-    filter: drop-shadow(0 0 15px rgba(200, 13, 85, 0.5));
+.nav-link:hover {
+    color: var(--magenta-stanley) !important;
 }
 
-.termo-legendario {
-    filter: drop-shadow(0 0 20px rgba(200, 13, 85, 0.8)); /* Brillo magenta intenso */
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+/* Efecto de selección de texto con los colores de la marca */
+::selection {
+    background: #c80d55;
+    color: white;
 }
 
-.termo-legendario:hover {
-    transform: scale(1.05) rotate(2deg); /* Se agranda y gira un toque al pasar el mouse */
-    filter: drop-shadow(0 0 40px rgba(200, 13, 85, 1));
+/* Scrollbar personalizada para que combine con el sitio */
+::-webkit-scrollbar {
+    width: 8px;
 }
-
-/* Fondo con degradado sutil para que no sea solo negro plano */
-body {
-    background: radial-gradient(circle at top right, #1a1a1a 0%, #000000 100%);
+::-webkit-scrollbar-track {
+    background: #000;
+}
+::-webkit-scrollbar-thumb {
+    background: #c80d55;
+    border-radius: 10px;
 }
 
 .btn-stanley-legend {
-    background-color: #c80d55;
-    color: white;
-    font-family: 'HansipCustom', sans-serif;
-    font-size: 1.5rem;
-    padding: 15px 40px;
-    border: none;
-    border-radius: 0px; /* Estilo cuadrado, más agresivo */
-    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%); /* Forma de trapecio */
-    transition: 0.3s;
-    text-decoration: none;
-    display: inline-block;
+    background-color: #c80d55 !important; /* Magenta StanLee */
+    color: white !important; /* Texto blanco siempre */
+    font-family: 'HansipCustom', sans-serif !important;
+    font-size: 1.3rem !important;
+    padding: 15px 45px !important;
+    text-decoration: none !important; /* ESTO MATA EL AZUL Y EL SUBRAYADO */
+    display: inline-block !important; /* Necesario para que el trapecio no se rompa */
+    border: none !important;
+
+    /* Forma de trapecio agresivo */
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%) !important;
+
+    transition: all 0.3s ease;
 }
 
 .btn-stanley-legend:hover {
-    background-color: white;
-    color: #c80d55;
-    transform: translateX(10px);
+    background-color: white !important;
+    color: #c80d55 !important;
+    transform: scale(1.05);
 }
 
