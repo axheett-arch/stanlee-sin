@@ -26,7 +26,7 @@
                     z-index: -1; filter: blur(40px); transform: scale(1.2);">
                 </div>
 
-                     <img src="{{ asset('img/termox.png') }}"
+                     <img src="{{ asset('img/stanlee_sin_2.png') }}"
                     alt="Termo Stanlee Sin"
                     class="img-fluid floating-anim termo-legendario"
                     style="max-height: 550px; filter: drop-shadow(0 25px 15px rgba(0,0,0,0.9));">

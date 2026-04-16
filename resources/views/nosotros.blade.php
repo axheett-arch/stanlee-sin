@@ -31,7 +31,7 @@
 
         <span class="position-absolute bottom-0 end-0 bg-magenta text-white hansip-font px-2 py-1"
               style="font-size: 0.7rem; transform: rotate(-3deg) translate(15px, 15px); background-color: #c80d55; box-shadow: 3px 3px 0px #000;">
-            ART CONCEPT #01
+            LEE SIN - League of Legends
             {{ time() }} </span>
     </div>
 </div>
