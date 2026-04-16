@@ -9,9 +9,8 @@
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}?v=1.1">
 
     <style>
-        /* Solo agregamos lo específico de Spotify, el resto lo trae tu CSS */
         .hero-consultas {
-            padding: 100px 20px 40px;
+            padding: 120px 20px 20px;
             text-align: center;
         }
 
@@ -19,48 +18,52 @@
             font-family: 'HansipCustom', sans-serif !important;
             font-size: 3.5rem;
             color: white;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
-        .search-container {
-            max-width: 700px;
-            margin: 30px auto;
+        /* Estilos para el acordeón desplegable */
+        .accordion-item {
+            background-color: #181818 !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            margin-bottom: 10px;
+            border-radius: 8px !important;
+            overflow: hidden;
         }
 
-        .search-input {
-            width: 100%;
-            padding: 15px 25px;
-            border-radius: 8px;
-            border: none;
-            font-size: 1.1rem;
+        .accordion-button {
+            background-color: #181818 !important;
+            color: white !important;
+            font-family: sans-serif;
+            font-weight: bold;
+            box-shadow: none !important;
+            padding: 1.2rem;
         }
 
-        .card-consulta {
-            background-color: #181818;
-            border-radius: 12px;
-            padding: 25px;
-            height: 160px;
-            display: flex;
-            align-items: flex-end;
-            transition: 0.3s;
-            text-decoration: none !important;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .accordion-button:not(.collapsed) {
+            color: #c80d55 !important;
+            border-bottom: 1px solid rgba(200, 13, 85, 0.3);
+            background-color: #1a1a1a !important;
         }
 
-        .card-consulta:hover {
-            border-color: #c80d55;
-            transform: translateY(-5px);
+        .accordion-button::after {
+            filter: invert(1);
         }
 
-        .card-consulta h3 {
-            font-family: 'HansipCustom', sans-serif !important;
+        .accordion-body {
+            color: #bbb;
+            background-color: #121212;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .apartado-titulo {
+            color: #c80d55;
+            margin-top: 40px;
+            margin-bottom: 15px;
             font-size: 1.3rem;
-            color: white;
-            margin: 0;
-        }
-
-        .bg-magenta-custom {
-            background-color: #c80d55 !important;
+            letter-spacing: 2px;
+            border-left: 4px solid #c80d55;
+            padding-left: 15px;
         }
     </style>
 </head>
@@ -115,23 +118,124 @@
 
     <div class="hero-consultas">
         <h1 class="titulo-principal">¿En qué podemos ayudarte?</h1>
-        <div class="search-container">
-            <input type="text" class="search-input" placeholder="Buscá respuestas sobre envíos, garantías...">
-        </div>
+        <p class="text-secondary hansip-font" style="font-size: 0.8rem;">Centro de Soporte Oficial</p>
     </div>
 
-    <div class="container mb-5">
-        <h2 class="hansip-font mb-4" style="color: #c80d55; font-size: 1.5rem;">Preguntas Frecuentes</h2>
-        <div class="row g-4">
-            <div class="col-6 col-md-4"><a href="#" class="card-consulta bg-magenta-custom">
-                    <h3>Envíos</h3>
-                </a></div>
-            <div class="col-6 col-md-4"><a href="#" class="card-consulta">
-                    <h3>Garantías</h3>
-                </a></div>
-            <div class="col-6 col-md-4"><a href="#" class="card-consulta">
-                    <h3>Pagos</h3>
-                </a></div>
+    <div class="container mb-5" style="max-width: 850px;">
+
+        <div class="accordion" id="accordionFAQ">
+
+            <h3 class="hansip-font apartado-titulo">ENVÍOS Y ENTREGA</h3>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#envio1">
+                        ¿Cuál es el costo de envío?
+                    </button>
+                </h2>
+                <div id="envio1" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                    <div class="accordion-body">
+                        El costo depende de tu ubicación. Podés calcularlo en el carrito antes de finalizar la compra
+                        ingresando tu código postal. Realizamos envíos a todo el país.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#envio2">
+                        ¿Cuánto demora en llegar mi pedido?
+                    </button>
+                </h2>
+                <div id="envio2" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                    <div class="accordion-body">
+                        Los productos de catálogo se despachan en 24/48hs hábiles. El tiempo de tránsito del correo
+                        suele ser de 3 a 7 días hábiles según la provincia.
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="hansip-font apartado-titulo">PRODUCTOS Y PERSONALIZACIÓN</h3>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#prod1">
+                        ¿Los productos tienen garantía?
+                    </button>
+                </h2>
+                <div id="prod1" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                    <div class="accordion-body">
+                        Sí, todos los termos cuentan con garantía por fallas de fabricación (pérdida de vacío). No cubre
+                        daños por mal uso, caídas o productos abrasivos sobre el grabado.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#prod2">
+                        ¿Cómo cuido el grabado de mi termo?
+                    </button>
+                </h2>
+                <div id="prod2" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                    <div class="accordion-body">
+                        Recomendamos lavar a mano con esponja suave y jabón neutro. Evitá el lavavajillas y esponjas de
+                        acero para mantener la estética urbana intacta.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#prod3">
+                        ¿Puedo encargar un diseño totalmente personalizado?
+                    </button>
+                </h2>
+                <div id="prod3" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                    <div class="accordion-body">
+                        ¡Claro! Trabajamos diseños a pedido. Podés contactarnos por WhatsApp para pasarnos tu idea y
+                        armamos el presupuesto.
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="hansip-font apartado-titulo">PAGOS Y SEGURIDAD</h3>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#pago1">
+                        ¿Qué tarjetas aceptan?
+                    </button>
+                </h2>
+                <div id="pago1" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                    <div class="accordion-body">
+                        Aceptamos todas las tarjetas de crédito y débito a través de plataformas seguras. También podés
+                        pagar vía transferencia bancaria con un descuento especial.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#pago2">
+                        ¿Es seguro comprar en la web?
+                    </button>
+                </h2>
+                <div id="pago2" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                    <div class="accordion-body">
+                        Totalmente. Contamos con certificados de seguridad SSL y tus datos bancarios están cifrados,
+                        nunca quedan guardados en nuestro sistema.
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <div class="text-center mt-5">
@@ -142,7 +246,14 @@
         </div>
     </div>
 
+
+    <footer class="text-center py-4 mt-5 border-top border-secondary text-secondary">
+        <p>&copy; 2026 StanLee Sin - Axel & Tiago </p>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
 </body>
 
 </html>
