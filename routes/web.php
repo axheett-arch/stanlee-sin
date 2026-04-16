@@ -25,3 +25,5 @@ Route::get('/', function () {
 Route::view('/nosotros', 'nosotros');
 
 Route::view('/terminos', 'terminos')->name('terminos');
+
+Route::view('/consultas', 'consultas')->name('consultas');
