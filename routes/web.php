@@ -27,3 +27,8 @@ Route::view('/nosotros', 'nosotros');
 Route::view('/terminos', 'terminos')->name('terminos');
 
 Route::view('/consultas', 'consultas')->name('consultas');
+
+Route::view('/comercializacion', 'comercializacion');
+
+Route::view('/login', 'login');
+Route::view('/registro', 'registro');

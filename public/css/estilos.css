@@ -24,7 +24,62 @@ h1, h2, h3, .hansip-font {
     text-transform: uppercase;
 }
 
-/* 3. BOTÓN LEGENDARIO (Trapecio) */
+/* 3. NAVEGACIÓN (Jerarquía Facha - Login Protagonista) */
+
+.nav-link-login, .nav-link, .offcanvas-body .nav-link {
+    color: white !important;
+    font-family: 'HansipCustom', sans-serif !important;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.nav-link-login:hover, .nav-link:hover, .offcanvas-body .nav-link:hover {
+    color: var(--magenta-stanley) !important;
+    transform: translateY(-2px);
+}
+
+/* LOGIN: El nuevo jefe (Trapecio Negro con borde) */
+.btn-login-trapecio {
+    background-color: #000 !important;
+    border: 2px solid var(--magenta-stanley) !important;
+    color: white !important;
+    font-family: 'HansipCustom', sans-serif !important;
+    font-size: 0.8rem !important;
+    padding: 6px 25px !important;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    transform: skewX(-15deg);
+    display: inline-block;
+}
+
+.btn-login-trapecio:hover {
+    background-color: var(--magenta-stanley) !important;
+    box-shadow: 0 0 15px var(--magenta-stanley);
+    transform: skewX(-15deg) scale(1.05);
+}
+
+/* SIGN UP: Sólido Magenta */
+.btn-signup-solid {
+    background-color: var(--magenta-stanley) !important;
+    color: white !important;
+    font-family: 'HansipCustom', sans-serif !important;
+    font-size: 0.8rem !important;
+    padding: 8px 22px !important;
+    border: none !important;
+    display: inline-block;
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%) !important;
+    transition: all 0.3s ease;
+}
+
+.btn-signup-solid:hover {
+    background-color: white !important;
+    color: var(--magenta-stanley) !important;
+    transform: scale(1.05);
+}
+
+/* 4. BOTONES GRANDES (Home) */
 .btn-stanley-legend {
     background-color: var(--magenta-stanley) !important;
     color: white !important;
@@ -38,46 +93,7 @@ h1, h2, h3, .hansip-font {
     transition: all 0.3s ease;
 }
 
-.btn-stanley-legend:hover {
-    background-color: white !important;
-    color: var(--magenta-stanley) !important;
-    transform: scale(1.05);
-}
-
-/* 4. NAVEGACIÓN Y MENÚ (Lo que querías: Blanco con hover Magenta) */
-.nav-link, .offcanvas-body .nav-link {
-    color: white !important; /* Blanco como pediste */
-    font-family: 'HansipCustom', sans-serif !important;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-}
-
-.nav-link:hover, .offcanvas-body .nav-link:hover {
-    color: var(--magenta-stanley) !important; /* Cambia a magenta al pasar el mouse */
-    transform: translateX(5px);
-}
-
-/* El botón de Consultas en el Navbar (Magenta Sólido) */
-.btn-outline-light {
-    background-color: var(--magenta-stanley) !important;
-    border: none !important;
-    color: white !important;
-    font-family: 'HansipCustom', sans-serif !important;
-    padding: 8px 25px !important;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    /* Le damos un toque de inclinación para que pegue con el logo */
-    transform: skewX(-10deg);
-}
-
-.btn-outline-light:hover {
-    background-color: white !important;
-    color: var(--magenta-stanley) !important;
-    transform: skewX(-10deg) scale(1.05);
-    box-shadow: 0 0 15px rgba(200, 13, 85, 0.5);
-}
-
-/* 5. SECCIÓN ESENCIA (Cartas Industriales) */
+/* 5. SECCIÓN ESENCIA, 6. FORMULARIOS y 7. ANIMACIONES (Mantener igual que antes) */
 div.card-esencia {
     background-color: var(--gris-panel) !important;
     border: 2px solid #1a1a1a !important;
@@ -92,33 +108,38 @@ div.card-esencia:hover {
     box-shadow: 0 10px 30px rgba(200, 13, 85, 0.3) !important;
 }
 
-.card-esencia h3 {
+.card-esencia h3 { color: white !important; margin-bottom: 1rem; }
+.card-esencia p { color: #888 !important; line-height: 1.4; }
+
+.input-stanley {
+    background-color: #0a0a0a !important;
+    border: 1px solid #1a1a1a !important;
     color: white !important;
-    margin-bottom: 1rem;
+    padding: 12px !important;
+    border-radius: 0 !important;
+    transition: all 0.3s ease;
 }
 
-.card-esencia p {
-    color: #888 !important;
-    line-height: 1.4;
+.input-stanley:focus {
+    border-color: var(--magenta-stanley) !important;
+    box-shadow: 0 0 10px rgba(200, 13, 85, 0.3) !important;
+    outline: none;
 }
 
-/* 6. IMAGEN Y ANIMACIONES */
-.floating-anim {
-    animation: float 4s ease-in-out infinite;
+.label-stanley {
+    font-family: 'HansipCustom', sans-serif;
+    font-size: 0.8rem;
+    color: #888;
+    letter-spacing: 1px;
 }
 
-.termo-legendario {
-    filter: drop-shadow(0 0 20px rgba(200, 13, 85, 0.8));
-    transition: transform 0.5s ease;
-}
+.floating-anim { animation: float 4s ease-in-out infinite; }
 
 @keyframes float {
-    0% { transform: translateY(0px); }
+    0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
-    100% { transform: translateY(0px); }
 }
 
-/* 7. UTILIDADES Y SCROLLBAR */
 .text-magenta { color: var(--magenta-stanley) !important; }
 
 ::-webkit-scrollbar { width: 8px; }
