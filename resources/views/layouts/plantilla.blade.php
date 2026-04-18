@@ -24,13 +24,13 @@
                 </a>
             </div>
 
-            <div class="d-flex align-items-center">
-                <a href="/catalogo" class="nav-link hansip-font d-none d-md-block px-3"
-                    style="font-size: 0.9rem;">CATALOGO</a>
-                <a href="/consultas" class="btn btn-outline-light btn-sm hansip-font ms-2"
-                    style="border-color: #c80d55; color: #c80d55; font-size: 0.8rem;">
-                    CONSULTAS
-                </a>
+            <div class="d-flex align-items-center ms-auto gap-3">
+                <a href="/catalogo" class="nav-link-login d-none d-lg-block">CATALOGO</a>
+                <a href="/consultas" class="nav-link-login">CONSULTAS</a>
+
+                <a href="/registro" class="btn-signup-solid d-none d-sm-block text-decoration-none text-center">SIGN UP</a>
+
+                <a href="/login" class="btn-login-trapecio text-decoration-none text-center">LOGIN</a>
             </div>
         </div>
     </nav>
@@ -47,8 +47,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item mb-2"><a class="nav-link hansip-font fs-5" href="/">INICIO</a></li>
                 <li class="nav-item mb-2"><a class="nav-link hansip-font fs-5" href="/nosotros">QUIÉNES SOMOS</a></li>
-                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-5"
-                        href="/comercializacion">COMERCIALIZACIÓN</a></li>
+                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-5" href="/comercializacion">COMERCIALIZACIÓN</a></li>
                 <li class="nav-item mb-2"><a class="nav-link hansip-font fs-5" href="/contacto">CONTACTO</a></li>
                 <li class="nav-item mb-2"><a class="nav-link hansip-font fs-5" href="/terminos">TÉRMINOS Y USOS</a></li>
                 <li class="nav-item mb-2"><a class="nav-link hansip-font fs-5" href="/catalogo">CATALOGO</a></li>
