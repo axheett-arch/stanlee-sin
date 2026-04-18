@@ -32,3 +32,5 @@ Route::view('/comercializacion', 'comercializacion');
 
 Route::view('/login', 'login');
 Route::view('/registro', 'registro');
+
+Route::view('/catalogo', 'catalogo')->name('catalogo');

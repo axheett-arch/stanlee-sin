@@ -11,7 +11,7 @@
 
 <body style="background-color: #121212; color: white;">
 
-    <nav class="navbar navbar-dark bg-black border-bottom border-magenta py-3">
+    <nav class="navbar navbar-dark bg-black border-bottom border-magenta py-3 sticky-top">
         <div class="container-fluid px-4">
             <div class="d-flex align-items-center">
                 <button class="btn text-white p-0 border-0 hansip-font me-3" type="button" data-bs-toggle="offcanvas"
@@ -26,10 +26,9 @@
 
             <div class="d-flex align-items-center ms-auto gap-3">
                 <a href="/catalogo" class="nav-link-login d-none d-lg-block">CATALOGO</a>
-                <a href="/consultas" class="nav-link-login">CONSULTAS</a>
+                <a href="/consultas" class="nav-link-login d-none d-md-block">CONSULTAS</a>
 
                 <a href="/registro" class="btn-signup-solid d-none d-sm-block text-decoration-none text-center">SIGN UP</a>
-
                 <a href="/login" class="btn-login-trapecio text-decoration-none text-center">LOGIN</a>
             </div>
         </div>
@@ -46,17 +45,21 @@
         <div class="offcanvas-body">
             <ul class="navbar-nav">
                 <li class="nav-item mb-2"><a class="nav-link hansip-font fs-5" href="/">INICIO</a></li>
-                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-5" href="/nosotros">QUIÉNES SOMOS</a></li>
-                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-5" href="/comercializacion">COMERCIALIZACIÓN</a></li>
-                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-5" href="/contacto">CONTACTO</a></li>
-                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-5" href="/terminos">TÉRMINOS Y USOS</a></li>
                 <li class="nav-item mb-2"><a class="nav-link hansip-font fs-5" href="/catalogo">CATALOGO</a></li>
-                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-5" href="/consultas">CONSULTAS</a></li>
+                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-5" href="/nosotros">QUIÉNES SOMOS</a></li>
+
+                <li class="my-3 border-bottom border-secondary opacity-25"></li>
+
+                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-6 text-secondary" href="/comercializacion">COMERCIALIZACIÓN</a></li>
+                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-6 text-secondary" href="/contacto">CONTACTO</a></li>
+                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-6 text-secondary" href="/consultas">FAQ / CONSULTAS</a></li>
+                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-6 text-secondary" href="/terminos">TÉRMINOS Y USOS</a></li>
             </ul>
 
             <div class="mt-5 pt-4 border-top border-secondary">
-                <p class="small text-secondary mb-0">Staff: Axel & Tiago Devs</p>
-                <p class="small text-secondary">Corrientes, Argentina</p>
+                <p class="small text-magenta hansip-font mb-1" style="font-size: 0.6rem;">UNIT: AXEL & TIAGO DEVS</p>
+                <p class="small text-secondary mb-0">Corrientes, Argentina</p>
+                <p class="small text-secondary opacity-50">PROYECTO TALLER I // 2026</p>
             </div>
         </div>
     </div>
@@ -66,7 +69,8 @@
     </div>
 
     <footer class="text-center py-4 mt-5 border-top border-secondary text-secondary">
-        <p>&copy; 2026 StanLee Sin - Axel & Tiago </p>
+        <p class="small mb-0">&copy; 2026 <span class="text-magenta hansip-font">StanLee Sin</span> - Axel Gomez & Tiago Tomasella</p>
+        <p class="small opacity-50">Resistencia Legendaria en cada pixel.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
