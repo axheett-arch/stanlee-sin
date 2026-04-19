@@ -11,8 +11,6 @@
 
 <body style="background-color: #121212; color: white;">
 
-    <div class="main-bg-overlay"></div>
-
     <nav class="navbar navbar-dark bg-black border-bottom border-magenta py-3 sticky-top">
         <div class="container-fluid px-4">
             <div class="d-flex align-items-center">
@@ -26,14 +24,17 @@
                 </a>
             </div>
 
-            <div class="d-flex align-items-center ms-auto gap-3">
-                <a href="/catalogo" class="nav-link-login d-none d-lg-block">CATALOGO</a>
-                <a href="/consultas" class="nav-link-login d-none d-md-block">CONSULTAS</a>
+            <div class="d-flex align-items-center">
+                <a href="/register" class="btn-outline-light btn-sm hansip-font ms-2"
+                    style="background-color: #c80d55; border-color: #c80d55; color: white; font-size: 0.8rem; padding: 7px 20px; text-decoration: none; transform: skewX(-10deg);">
+                    UNIRSE AL CREW
+                </a>
 
-                <a href="/registro" class="btn-signup-solid d-none d-sm-block text-decoration-none text-center">SIGN UP</a>
-                <a href="/login" class="btn-login-trapecio text-decoration-none text-center">LOGIN</a>
+                <a href="/login" class="btn btn-outline-light btn-sm hansip-font ms-2"
+                    style="border-color: white; color: white; font-size: 0.8rem; padding: 7px 20px; text-decoration: none;">
+                    INICIAR SESIÓN
+                </a>
             </div>
-        </div>
     </nav>
 
     <div class="offcanvas offcanvas-start bg-black text-white border-end border-magenta" tabindex="-1" id="menuLateral"
@@ -52,10 +53,14 @@
 
                 <li class="my-3 border-bottom border-secondary opacity-25"></li>
 
-                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-6 text-secondary" href="/comercializacion">COMERCIALIZACIÓN</a></li>
-                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-6 text-secondary" href="/contacto">CONTACTO</a></li>
-                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-6 text-secondary" href="/consultas">FAQ / CONSULTAS</a></li>
-                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-6 text-secondary" href="/terminos">TÉRMINOS Y USOS</a></li>
+                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-6 text-secondary"
+                        href="/comercializacion">COMERCIALIZACIÓN</a></li>
+                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-6 text-secondary"
+                        href="/contacto">CONTACTO</a></li>
+                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-6 text-secondary" href="/consultas">FAQ /
+                        CONSULTAS</a></li>
+                <li class="nav-item mb-2"><a class="nav-link hansip-font fs-6 text-secondary" href="/terminos">TÉRMINOS
+                        Y USOS</a></li>
             </ul>
 
             <div class="mt-5 pt-4 border-top border-secondary">
@@ -71,7 +76,8 @@
     </div>
 
     <footer class="text-center py-4 mt-5 border-top border-secondary text-secondary">
-        <p class="small mb-0">&copy; 2026 <span class="text-magenta hansip-font">StanLee Sin</span> - Axel Gomez & Tiago Tomasella</p>
+        <p class="small mb-0">&copy; 2026 <span class="text-magenta hansip-font">StanLee Sin</span> - Axel Gomez & Tiago
+            Tomasella</p>
         <p class="small opacity-50">Resistencia Legendaria en cada pixel.</p>
     </footer>
 
