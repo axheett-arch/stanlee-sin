@@ -11,6 +11,8 @@
 
 <body style="background-color: #121212; color: white;">
 
+    <div class="main-bg-overlay"></div>
+
     <nav class="navbar navbar-dark bg-black border-bottom border-magenta py-3 sticky-top">
         <div class="container-fluid px-4">
             <div class="d-flex align-items-center">
