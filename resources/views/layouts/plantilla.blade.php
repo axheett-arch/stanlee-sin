@@ -165,7 +165,7 @@
             <div class="col-md-8">
                 <h4 class="hansip-font mb-4" style="font-size: 1.1rem; letter-spacing: 1px; color: white;">
                     ¿Quieres enterarte de todas las novedades? <br>
-                    <span class="text-magenta">Sigue a la gang</span> en todas sus redes sociales
+                    <span class="text-magenta">Sigue al team</span> en todas sus redes sociales
                 </h4>
 
                 <div class="d-flex justify-content-center gap-4 mt-2">
