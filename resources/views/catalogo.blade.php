@@ -1,3 +1,4 @@
+
 @extends('layouts.plantilla')
 
 @section('contenido')
@@ -30,13 +31,7 @@
                             </div>
                             <p class="text-secondary fs-5 mb-4">
                                 El arsenal definitivo para el cebador de élite. Incluye Termo Classic 1L, Mate System y Bombilla de alta precisión.
-                                <span class="text-white">Probado en las condiciones más extremas de la Grieta y la Facultad.</span>
                             </p>
-                            <div class="d-flex gap-3 mb-4">
-                                <div class="badge-tech px-3 py-2">TECNOLOGÍA DE VACÍO</div>
-                                <div class="badge-tech px-3 py-2">ACERO 18/8</div>
-                                <div class="badge-tech px-3 py-2">GRABADO CUSTOM</div>
-                            </div>
                             <button class="btn-stanley-legend px-5 py-3 btn-glitch">RECLAMAR RECOMPENSA</button>
                         </div>
                     </div>
@@ -45,77 +40,151 @@
         </div>
 
         <div class="col-md-4">
-            <div class="card-esencia h-100 p-0 overflow-hidden border-magenta card-glow">
-                <div class="product-header px-3 py-2 d-flex justify-content-between align-items-center">
-                    <span class="text-magenta small hansip-font">SN-001 // SPECIAL</span>
-                    <span class="badge rounded-pill bg-magenta" style="font-size: 0.5rem;">TOP_TIER</span>
-                </div>
+            <div class="card-esencia h-100 p-0 overflow-hidden border-magenta">
                 <div class="bg-black text-center p-4">
                     <img src="{{ asset('img/izanagi.png') }}" class="img-fluid img-catalog" alt="Izanagi White">
                 </div>
-                <div class="p-4 border-top border-secondary bg-dark-gradient">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h3 class="hansip-font h5 text-white mb-0">IZANAGI WHITE</h3>
+                <div class="p-4 border-top border-secondary">
+                    <h3 class="hansip-font h5 text-white mb-2">IZANAGI WHITE</h3>
+                    <p class="text-secondary small mb-3">Armadura de acero blanco. Visión clara en la tormenta.</p>
+                    <div class="d-flex justify-content-between align-items-center">
                         <span class="text-magenta fw-bold">$89.000</span>
+                        <button class="btn-stanley-legend px-3 py-1 btn-glitch" style="font-size: 0.7rem;">EQUIPAR</button>
                     </div>
-                    <p class="text-secondary small mb-3">Pureza y resistencia. Una armadura de acero blanco diseñada para los que ven más allá de las sombras.</p>
-                    <div class="d-flex gap-2 mb-4">
-                        <span class="badge-tech">HOT: 28H</span>
-                        <span class="badge-tech">COLD: 30H</span>
-                    </div>
-                    <button class="btn-stanley-legend w-100 py-2 btn-glitch">ORDENAR EQUIPO</button>
                 </div>
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="card-esencia h-100 p-0 overflow-hidden">
-                <div class="product-header px-3 py-2 d-flex justify-content-between align-items-center">
-                    <span class="text-secondary small hansip-font">SN-002 // CLASSIC</span>
-                </div>
                 <div class="bg-black text-center p-4">
                     <img src="{{ asset('img/monjeciego.png') }}" class="img-fluid img-catalog" alt="Monje Ciego">
                 </div>
                 <div class="p-4 border-top border-secondary">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h3 class="hansip-font h5 text-white mb-0">MONJE CIEGO</h3>
+                    <h3 class="hansip-font h5 text-white mb-2">MONJE CIEGO</h3>
+                    <p class="text-secondary small mb-3">El estándar de la crew. Resistencia legendaria.</p>
+                    <div class="d-flex justify-content-between align-items-center">
                         <span class="text-magenta fw-bold">$85.000</span>
+                        <button class="btn-stanley-legend px-3 py-1" style="font-size: 0.7rem;">EQUIPAR</button>
                     </div>
-                    <p class="text-secondary small mb-3">El estándar de la crew. Rojo vibrante para que tu equipo nunca pase desapercibido en el búnker.</p>
-                    <div class="d-flex gap-2 mb-4">
-                        <span class="badge-tech">HOT: 24H</span>
-                        <span class="badge-tech">COLD: 24H</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card-esencia h-100 p-0 overflow-hidden border-magenta">
+                <div class="bg-black text-center p-4">
+                    <img src="{{ asset('img/tempest.png') }}" class="img-fluid img-catalog" alt="Tempest Black">
+                </div>
+                <div class="p-4 border-top border-secondary">
+                    <h3 class="hansip-font h5 text-white mb-2">TEMPEST DARK</h3>
+                    <p class="text-secondary small mb-3">Grabado láser industrial. Estética de calle absoluta.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-magenta fw-bold">$95.000</span>
+                        <button class="btn-stanley-legend px-3 py-1 btn-glitch" style="font-size: 0.7rem;">EQUIPAR</button>
                     </div>
-                    <button class="btn-stanley-legend w-100 py-2">ORDENAR EQUIPO</button>
                 </div>
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="card-esencia h-100 p-0 overflow-hidden border-magenta card-glow">
-                <div class="product-header px-3 py-2 d-flex justify-content-between align-items-center">
-                    <span class="text-magenta small hansip-font">SN-003 // LIMITED</span>
-                    <span class="badge rounded-pill bg-magenta" style="font-size: 0.5rem;">DROP_01</span>
-                </div>
+
                 <div class="bg-black text-center p-4">
-                    <img src="{{ asset('img/tempest.png') }}" class="img-fluid img-catalog" alt="Tempest Black">
+                    <img src="{{ asset('img/terere-storm.png') }}" class="img-fluid img-catalog" alt="Tereré Storm">
                 </div>
                 <div class="p-4 border-top border-secondary bg-dark-gradient">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h3 class="hansip-font h5 text-white mb-0">TEMPEST DARK</h3>
-                        <span class="text-magenta fw-bold">$95.000</span>
+                        <h3 class="hansip-font h5 text-white mb-0">STORM DRINK</h3>
+                        <span class="text-magenta fw-bold">$48.000</span>
                     </div>
-                    <p class="text-secondary small mb-3">Grabado láser industrial con motivos florales. El equilibrio perfecto entre la fuerza y la estética urbana.</p>
-                    <div class="d-flex gap-2 mb-4">
-                        <span class="badge-tech">COLD: 12H</span>
-                        <span class="badge-tech">ICE: 2D</span>
-                    </div>
-                    <button class="btn-stanley-legend w-100 py-2 btn-glitch">ORDENAR EQUIPO</button>
+                    <p class="text-secondary small mb-3">Unidad térmica de flujo rápido. Incluye bombilla de precisión para el tereré más frío de la Grieta.</p>
+                    <button class="btn-stanley-legend w-100 py-2 btn-glitch">EQUIPAR</button>
                 </div>
             </div>
         </div>
 
+        <div class="col-md-4">
+            <div class="card-esencia h-100 p-0 overflow-hidden border-magenta">
+                <div class="bg-black text-center p-4">
+                    <img src="{{ asset('img/vasostriker.png') }}" class="img-fluid img-catalog" alt="Vaso Striker">
+                </div>
+                <div class="p-4 border-top border-secondary">
+                    <h3 class="hansip-font h5 text-white mb-2">STRIKER CUP</h3>
+                    <p class="text-secondary small mb-3">Brindis final. Destapador táctico incluido.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-magenta fw-bold">$38.000</span>
+                        <button class="btn-stanley-legend px-3 py-1" style="font-size: 0.7rem;">EQUIPAR</button>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div class="col-md-4">
+            <div class="card-esencia h-100 p-0 overflow-hidden">
+                <div class="bg-black text-center p-4">
+                    <img src="{{ asset('img/bunker.png') }}" class="img-fluid img-catalog" alt="Growler Búnker">
+                </div>
+                <div class="p-4 border-top border-secondary">
+                    <h3 class="hansip-font h5 text-white mb-2">GROWLER BÚNKER</h3>
+                    <p class="text-secondary small mb-3">1.9L de pura hidratación para la crew.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-magenta fw-bold">$98.000</span>
+                        <button class="btn-stanley-legend px-3 py-1" style="font-size: 0.7rem;">EQUIPAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card-esencia h-100 p-0 overflow-hidden border-magenta">
+                <div class="bg-black text-center p-4">
+                    <img src="{{ asset('img/ghost-white.png') }}" class="img-fluid img-catalog" alt="Ghost White">
+                </div>
+                <div class="p-4 border-top border-secondary">
+                    <h3 class="hansip-font h5 text-white mb-2">GHOST WHITE</h3>
+                    <p class="text-secondary small mb-3">Edición sigilosa. Acero mate de alta gama.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-magenta fw-bold">$92.000</span>
+                        <button class="btn-stanley-legend px-3 py-1 btn-glitch" style="font-size: 0.7rem;">EQUIPAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card-esencia h-100 p-0 overflow-hidden border-magenta card-glow">
+                <div class="bg-black text-center p-4">
+                    <img src="{{ asset('img/monjeciego.png') }}" class="img-fluid img-catalog" style="filter: hue-rotate(40deg) saturate(1.5);" alt="Fire Dragon">
+                </div>
+                <div class="p-4 border-top border-secondary bg-dark-gradient">
+                    <h3 class="hansip-font h5 text-white mb-2">FIRE DRAGON</h3>
+                    <p class="text-secondary small mb-3">Poder de fuego. Temperatura extrema asegurada.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-magenta fw-bold">$87.000</span>
+                        <button class="btn-stanley-legend px-3 py-1 btn-glitch" style="font-size: 0.7rem;">EQUIPAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card-esencia h-100 p-0 overflow-hidden border-magenta">
+                <div class="bg-black text-center p-4">
+                    <img src="{{ asset('img/bush.png') }}" class="img-fluid img-catalog" alt="Bush Green">
+                </div>
+                <div class="p-4 border-top border-secondary">
+                    <h3 class="hansip-font h5 text-white mb-2">BUSH GREEN</h3>
+                    <p class="text-secondary small mb-3">Clásico indomable. El verde de la resistencia.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-magenta fw-bold">$99.000</span>
+                        <button class="btn-stanley-legend px-3 py-1" style="font-size: 0.7rem;">EQUIPAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <div class="mt-5 text-center p-4 border border-secondary dashed-border">
         <p class="text-secondary small mb-0">
@@ -125,47 +194,11 @@
 </div>
 
 <style>
-    /* Efecto de Brillo para los destacados */
-    .card-glow {
-        box-shadow: 0 0 20px rgba(200, 13, 85, 0.1);
-    }
-
-    .img-catalog {
-        max-height: 250px;
-        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .card-esencia:hover .img-catalog {
-        transform: scale(1.1) rotate(2deg);
-    }
-
-    /* Badge estilo tech */
-    .badge-tech {
-        background-color: #111;
-        color: #777;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 4px 8px;
-        font-size: 0.6rem;
-        font-family: 'HansipCustom', sans-serif;
-        letter-spacing: 1px;
-    }
-
-    .bg-dark-gradient {
-        background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(200,13,85,0.05) 100%);
-    }
-
-    .bg-magenta {
-        background-color: var(--magenta-stanley);
-    }
-
-    .dashed-border {
-        border-style: dashed !important;
-    }
-
-    /* Botón con efecto sutil */
-    .btn-glitch:hover {
-        box-shadow: 2px 2px 0px #fff;
-        transform: translate(-2px, -2px);
-    }
+    .card-glow { box-shadow: 0 0 20px rgba(200, 13, 85, 0.2); }
+    .img-catalog { max-height: 250px; transition: transform 0.4s ease; }
+    .card-esencia:hover .img-catalog { transform: scale(1.1) rotate(2deg); }
+    .bg-dark-gradient { background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(200,13,85,0.05) 100%); }
+    .dashed-border { border-style: dashed !important; }
+    .btn-glitch:hover { box-shadow: 2px 2px 0px #fff; transform: translate(-2px, -2px); }
 </style>
 @endsection

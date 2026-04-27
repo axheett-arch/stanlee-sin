@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StanLee Sin | Axel & Tiago</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}?v=1.1">
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}?v=1.2">
 </head>
 
 <body style="background-color: #121212; color: white;">
@@ -70,13 +70,37 @@
         @yield('contenido')
     </div>
 
-    <footer class="text-center py-4 mt-5 border-top border-secondary text-secondary">
+    <footer class="text-center py-4 mt-5 border-top border-secondary text-secondary" style="background: rgba(0,0,0,0.8);">
         <p class="small mb-0">&copy; 2026 <span class="text-magenta hansip-font">StanLee Sin</span> - Axel Gomez & Tiago Tomasella</p>
         <p class="small opacity-50">Resistencia Legendaria en cada pixel.</p>
     </footer>
 
+    <button id="btnScrollTop" class="btn-scroll-top hansip-font" title="Volver al inicio">
+        UP
+    </button>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-</body>
+    <script>
+        const btnUp = document.getElementById("btnScrollTop");
 
+        window.onscroll = function() {
+            // Aparece el botón después de scrollear 400px
+            if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+                btnUp.style.display = "block";
+            } else {
+                btnUp.style.display = "none";
+            }
+        };
+
+        btnUp.onclick = function() {
+            // Deslizamiento suave hacia arriba
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        };
+    </script>
+
+</body>
 </html>
