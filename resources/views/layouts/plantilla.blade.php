@@ -7,6 +7,7 @@
     <title>StanLee Sin | Axel & Tiago</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}?v=1.2">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
 
 <body style="background-color: #121212; color: white;">
@@ -75,8 +76,8 @@
         <p class="small opacity-50">Resistencia Legendaria en cada pixel.</p>
     </footer>
 
-    <button id="btnScrollTop" class="btn-scroll-top hansip-font" title="Volver al inicio">
-        UP
+    <button id="btnScrollTop" class="btn-scroll-top" title="Volver al inicio">
+     <i class="ti ti-chevrons-up" style="font-size: 1.5rem;"></i>
     </button>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
