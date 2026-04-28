@@ -28,7 +28,7 @@
             <div class="d-flex align-items-center">
                 <a href="/registro" class="btn-outline-light btn-sm hansip-font ms-2"
                     style="background-color: #c80d55; border-color: #c80d55; color: white; font-size: 0.8rem; padding: 7px 20px; text-decoration: none; transform: skewX(-10deg);">
-                    UNIRSE AL CREW
+                    UNIRSE A LA CREW
                 </a>
 
                 <a href="/login" class="btn btn-outline-light btn-sm hansip-font ms-2"

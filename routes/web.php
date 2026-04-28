@@ -31,3 +31,11 @@ Route::view('/login', 'login');
 Route::view('/registro', 'registro');
 
 Route::view('/catalogo', 'catalogo')->name('catalogo');
+
+Route::get('/en-desarrollo', function () {
+    return view('coming-soon');
+})->name('en.desarrollo');
+
+Route::get('/mensaje-enviado', function () {
+    return view('mensaje-enviado');
+})->name('contacto.enviado');

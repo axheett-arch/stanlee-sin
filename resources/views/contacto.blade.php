@@ -7,8 +7,9 @@
     </h1>
 
     <div class="row g-5">
+        {{-- COLUMNA DE DATOS --}}
         <div class="col-md-5">
-            <div class="card-esencia p-4 h-100">
+            <div class="card-esencia p-4 h-100 border-magenta">
                 <h3 class="hansip-font h4 mb-4 text-white">OPERACIONES</h3>
 
                 <div class="mb-4">
@@ -32,22 +33,24 @@
             </div>
         </div>
 
+        {{-- COLUMNA DEL FORMULARIO --}}
         <div class="col-md-7">
-            <div class="card-esencia p-4">
-                <form action="#" method="POST">
+            <div class="card-esencia p-4 border-magenta">
+                {{-- Apuntamos a la ruta de éxito que creamos antes --}}
+                <form action="{{ route('contacto.enviado') }}" method="GET">
                     <div class="mb-4">
-                        <label class="label-stanley mb-2">NOMBRE / A.K.A</label>
-                        <input type="text" class="form-control input-stanley" placeholder="¿Cómo te llamamos?">
+                        <label class="label-stanley mb-2 text-white hansip-font" style="font-size: 0.7rem;">NOMBRE / A.K.A</label>
+                        <input type="text" class="form-control input-stanley bg-black text-white border-secondary" placeholder="¿Cómo te llamamos?" required>
                     </div>
 
                     <div class="mb-4">
-                        <label class="label-stanley mb-2">EMAIL DE CONTACTO</label>
-                        <input type="email" class="form-control input-stanley" placeholder="tu@email.com">
+                        <label class="label-stanley mb-2 text-white hansip-font" style="font-size: 0.7rem;">EMAIL DE CONTACTO</label>
+                        <input type="email" class="form-control input-stanley bg-black text-white border-secondary" placeholder="tu@email.com" required>
                     </div>
 
                     <div class="mb-4">
-                        <label class="label-stanley mb-2">MOTIVO DE LA MISIÓN</label>
-                        <select class="form-control input-stanley">
+                        <label class="label-stanley mb-2 text-white hansip-font" style="font-size: 0.7rem;">MOTIVO DE LA MISIÓN</label>
+                        <select class="form-control input-stanley bg-black text-white border-secondary">
                             <option>Consulta General</option>
                             <option>Pedido Personalizado</option>
                             <option>Problema Técnico (Garantía)</option>
@@ -56,18 +59,30 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="label-stanley mb-2">MENSAJE</label>
-                        <textarea class="form-control input-stanley" rows="4" placeholder="Escribí acá tu duda o propuesta..."></textarea>
+                        <label class="label-stanley mb-2 text-white hansip-font" style="font-size: 0.7rem;">MENSAJE</label>
+                        <textarea class="form-control input-stanley bg-black text-white border-secondary" rows="4" placeholder="Escribí acá tu duda o propuesta..." required></textarea>
                     </div>
 
-                    <form action="" method="GET">
-                        <button type="submit" class="btn-stanley-legend w-100">
-                            ENVIAR MENSAJE
-                         </button>
-                    </form>
+                    <button type="submit" class="btn-stanley-legend w-100 py-3 btn-glitch">
+                        ENVIAR MENSAJE
+                    </button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .input-stanley:focus {
+        background-color: #111 !important;
+        border-color: #ff0066 !important;
+        color: white !important;
+        box-shadow: 0 0 10px rgba(255, 0, 102, 0.2);
+    }
+    .card-esencia {
+        background: rgba(0,0,0,0.8);
+        border: 1px solid #333;
+    }
+    .border-magenta { border: 1px solid #ff0066 !important; }
+</style>
 @endsection

@@ -28,7 +28,7 @@
                     <button type="button" onclick="window.location.href='{{ url('/') }}?msg=register'"
                         class="btn-outline-light btn-sm hansip-font w-100"
                         style="background-color: #c80d55; border-color: #c80d55; color: white; font-size: 1.1rem; padding: 12px 20px; text-decoration: none; transform: skewX(-10deg); border: none;">
-                        UNIRSE AL CREW
+                        UNIRSE A LA CREW
                     </button>
                 </form>
             </div>

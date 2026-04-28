@@ -14,6 +14,7 @@
 
     <div class="row g-4">
 
+        {{-- SET MAESTRÍA --}}
         <div class="col-12 mb-4">
             <div class="card-esencia p-0 overflow-hidden border-magenta card-glow" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(200,13,85,0.05) 100%);">
                 <div class="row g-0 align-items-center">
@@ -32,13 +33,14 @@
                             <p class="text-secondary fs-5 mb-4">
                                 El arsenal definitivo para el cebador de élite. Incluye Termo Classic 1L, Mate System y Bombilla de alta precisión.
                             </p>
-                            <button class="btn-stanley-legend px-5 py-3 btn-glitch">RECLAMAR RECOMPENSA</button>
+                            <a href="{{ route('en.desarrollo') }}" class="btn btn-stanley-legend px-5 py-3 btn-glitch text-decoration-none d-inline-block">RECLAMAR RECOMPENSA</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        {{-- IZANAGI WHITE --}}
         <div class="col-md-4">
             <div class="card-esencia h-100 p-0 overflow-hidden border-magenta">
                 <div class="bg-black text-center p-4">
@@ -46,15 +48,16 @@
                 </div>
                 <div class="p-4 border-top border-secondary">
                     <h3 class="hansip-font h5 text-white mb-2">IZANAGI WHITE</h3>
-                    <p class="text-secondary small mb-3">Armadura de acero blanco. Visión clara en la tormenta.</p>
+                    <p class="text-secondary small mb-3">Pureza y resistencia extrema. Visión clara en la tormenta.</p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-magenta fw-bold">$89.000</span>
-                        <button class="btn-stanley-legend px-3 py-1 btn-glitch" style="font-size: 0.7rem;">EQUIPAR</button>
+                        <span class="text-magenta fw-bold">$70.000</span>
+                        <a href="{{ route('en.desarrollo') }}" class="btn btn-stanley-legend px-3 py-1 btn-glitch text-decoration-none" style="font-size: 0.7rem;">EQUIPAR</a>
                     </div>
                 </div>
             </div>
         </div>
 
+        {{-- MONJE CIEGO --}}
         <div class="col-md-4">
             <div class="card-esencia h-100 p-0 overflow-hidden">
                 <div class="bg-black text-center p-4">
@@ -62,15 +65,16 @@
                 </div>
                 <div class="p-4 border-top border-secondary">
                     <h3 class="hansip-font h5 text-white mb-2">MONJE CIEGO</h3>
-                    <p class="text-secondary small mb-3">El estándar de la crew. Resistencia legendaria.</p>
+                    <p class="text-secondary small mb-3">Resistencia legendaria que no necesita presentación. El pilar de la crew.</p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-magenta fw-bold">$85.000</span>
-                        <button class="btn-stanley-legend px-3 py-1" style="font-size: 0.7rem;">EQUIPAR</button>
+                        <span class="text-magenta fw-bold">$68.000</span>
+                        <a href="{{ route('en.desarrollo') }}" class="btn btn-stanley-legend px-3 py-1 text-decoration-none" style="font-size: 0.7rem;">EQUIPAR</a>
                     </div>
                 </div>
             </div>
         </div>
 
+        {{-- TEMPEST DARK --}}
         <div class="col-md-4">
             <div class="card-esencia h-100 p-0 overflow-hidden border-magenta">
                 <div class="bg-black text-center p-4">
@@ -78,32 +82,33 @@
                 </div>
                 <div class="p-4 border-top border-secondary">
                     <h3 class="hansip-font h5 text-white mb-2">TEMPEST DARK</h3>
-                    <p class="text-secondary small mb-3">Grabado láser industrial. Estética de calle absoluta.</p>
+                    <p class="text-secondary small mb-3">Forjado en las sombras, diseñado para brillar. El item definitivo del setup.</p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-magenta fw-bold">$95.000</span>
-                        <button class="btn-stanley-legend px-3 py-1 btn-glitch" style="font-size: 0.7rem;">EQUIPAR</button>
+                        <span class="text-magenta fw-bold">$85.000</span>
+                        <a href="{{ route('en.desarrollo') }}" class="btn btn-stanley-legend px-3 py-1 btn-glitch text-decoration-none" style="font-size: 0.7rem;">EQUIPAR</a>
                     </div>
                 </div>
             </div>
         </div>
 
+        {{-- STORM DRINK --}}
         <div class="col-md-4">
             <div class="card-esencia h-100 p-0 overflow-hidden border-magenta card-glow">
-
                 <div class="bg-black text-center p-4">
                     <img src="{{ asset('img/terere-storm.png') }}" class="img-fluid img-catalog" alt="Tereré Storm">
                 </div>
                 <div class="p-4 border-top border-secondary bg-dark-gradient">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <h3 class="hansip-font h5 text-white mb-0">STORM DRINK</h3>
-                        <span class="text-magenta fw-bold">$48.000</span>
+                        <span class="text-magenta fw-bold">$68.000</span>
                     </div>
-                    <p class="text-secondary small mb-3">Unidad térmica de flujo rápido. Incluye bombilla de precisión para el tereré más frío de la Grieta.</p>
-                    <button class="btn-stanley-legend w-100 py-2 btn-glitch">EQUIPAR</button>
+                    <p class="text-secondary small mb-3">Unidad térmica de flujo rápido. Incluye bombilla de precisión para el tereré más frío.</p>
+                    <a href="{{ route('en.desarrollo') }}" class="btn btn-stanley-legend w-100 py-2 btn-glitch text-decoration-none">EQUIPAR</a>
                 </div>
             </div>
         </div>
 
+        {{-- STRIKER CUP --}}
         <div class="col-md-4">
             <div class="card-esencia h-100 p-0 overflow-hidden border-magenta">
                 <div class="bg-black text-center p-4">
@@ -113,13 +118,14 @@
                     <h3 class="hansip-font h5 text-white mb-2">STRIKER CUP</h3>
                     <p class="text-secondary small mb-3">Brindis final. Destapador táctico incluido.</p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-magenta fw-bold">$38.000</span>
-                        <button class="btn-stanley-legend px-3 py-1" style="font-size: 0.7rem;">EQUIPAR</button>
+                        <span class="text-magenta fw-bold">$70.000</span>
+                        <a href="{{ route('en.desarrollo') }}" class="btn btn-stanley-legend px-3 py-1 text-decoration-none" style="font-size: 0.7rem;">EQUIPAR</a>
                     </div>
                 </div>
             </div>
         </div>
 
+        {{-- GROWLER BÚNKER --}}
         <div class="col-md-4">
             <div class="card-esencia h-100 p-0 overflow-hidden">
                 <div class="bg-black text-center p-4">
@@ -127,15 +133,16 @@
                 </div>
                 <div class="p-4 border-top border-secondary">
                     <h3 class="hansip-font h5 text-white mb-2">GROWLER BÚNKER</h3>
-                    <p class="text-secondary small mb-3">1.9L de pura hidratación para la crew.</p>
+                    <p class="text-secondary small mb-3">El tanque que tu inventario necesita. Resistencia de grado militar.</p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-magenta fw-bold">$98.000</span>
-                        <button class="btn-stanley-legend px-3 py-1" style="font-size: 0.7rem;">EQUIPAR</button>
+                        <span class="text-magenta fw-bold">$68.000</span>
+                        <a href="{{ route('en.desarrollo') }}" class="btn btn-stanley-legend px-3 py-1 text-decoration-none" style="font-size: 0.7rem;">EQUIPAR</a>
                     </div>
                 </div>
             </div>
         </div>
 
+        {{-- GHOST WHITE --}}
         <div class="col-md-4">
             <div class="card-esencia h-100 p-0 overflow-hidden border-magenta">
                 <div class="bg-black text-center p-4">
@@ -143,15 +150,16 @@
                 </div>
                 <div class="p-4 border-top border-secondary">
                     <h3 class="hansip-font h5 text-white mb-2">GHOST WHITE</h3>
-                    <p class="text-secondary small mb-3">Edición sigilosa. Acero mate de alta gama.</p>
+                    <p class="text-secondary small mb-3">Máxima retención térmica. Domina cada partida con energía inagotable.</p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-magenta fw-bold">$92.000</span>
-                        <button class="btn-stanley-legend px-3 py-1 btn-glitch" style="font-size: 0.7rem;">EQUIPAR</button>
+                        <span class="text-magenta fw-bold">$62.000</span>
+                        <a href="{{ route('en.desarrollo') }}" class="btn btn-stanley-legend px-3 py-1 btn-glitch text-decoration-none" style="font-size: 0.7rem;">EQUIPAR</a>
                     </div>
                 </div>
             </div>
         </div>
 
+        {{-- FIRE DRAGON --}}
         <div class="col-md-4">
             <div class="card-esencia h-100 p-0 overflow-hidden border-magenta card-glow">
                 <div class="bg-black text-center p-4">
@@ -161,24 +169,25 @@
                     <h3 class="hansip-font h5 text-white mb-2">FIRE DRAGON</h3>
                     <p class="text-secondary small mb-3">Poder de fuego. Temperatura extrema asegurada.</p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-magenta fw-bold">$87.000</span>
-                        <button class="btn-stanley-legend px-3 py-1 btn-glitch" style="font-size: 0.7rem;">EQUIPAR</button>
+                        <span class="text-magenta fw-bold">$62.000</span>
+                        <a href="{{ route('en.desarrollo') }}" class="btn btn-stanley-legend px-3 py-1 btn-glitch text-decoration-none" style="font-size: 0.7rem;">EQUIPAR</a>
                     </div>
                 </div>
             </div>
         </div>
 
+        {{-- GREEN BUSH --}}
         <div class="col-md-4">
             <div class="card-esencia h-100 p-0 overflow-hidden border-magenta">
                 <div class="bg-black text-center p-4">
                     <img src="{{ asset('img/bush.png') }}" class="img-fluid img-catalog" alt="Bush Green">
                 </div>
                 <div class="p-4 border-top border-secondary">
-                    <h3 class="hansip-font h5 text-white mb-2">BUSH GREEN</h3>
-                    <p class="text-secondary small mb-3">Clásico indomable. El verde de la resistencia.</p>
+                    <h3 class="hansip-font h5 text-white mb-2">GREEN BUSH</h3>
+                    <p class="text-secondary small mb-3">Con el sigilo de la jungla. El verde de la resistencia.</p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-magenta fw-bold">$99.000</span>
-                        <button class="btn-stanley-legend px-3 py-1" style="font-size: 0.7rem;">EQUIPAR</button>
+                        <span class="text-magenta fw-bold">$135.000</span>
+                        <a href="{{ route('en.desarrollo') }}" class="btn btn-stanley-legend px-3 py-1 text-decoration-none" style="font-size: 0.7rem;">EQUIPAR</a>
                     </div>
                 </div>
             </div>
@@ -194,11 +203,31 @@
 </div>
 
 <style>
+
+    .img-catalog {
+        width: 100%;
+        max-width: 180px;
+        height: 220px;
+        object-fit: contain;
+        transition: transform 0.4s ease;
+        display: block;
+        margin: 0 auto;
+    }
+
     .card-glow { box-shadow: 0 0 20px rgba(200, 13, 85, 0.2); }
-    .img-catalog { max-height: 250px; transition: transform 0.4s ease; }
     .card-esencia:hover .img-catalog { transform: scale(1.1) rotate(2deg); }
     .bg-dark-gradient { background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(200,13,85,0.05) 100%); }
     .dashed-border { border-style: dashed !important; }
-    .btn-glitch:hover { box-shadow: 2px 2px 0px #fff; transform: translate(-2px, -2px); }
+
+    .btn-stanley-legend {
+        display: inline-block;
+        text-align: center;
+        text-decoration: none !important;
+    }
+
+    .btn-glitch:hover {
+        box-shadow: 2px 2px 0px #fff;
+        transform: translate(-2px, -2px);
+    }
 </style>
 @endsection
