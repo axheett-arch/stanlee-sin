@@ -146,4 +146,27 @@ div.card-esencia:hover {
 ::-webkit-scrollbar-track { background: #000; }
 ::-webkit-scrollbar-thumb { background: var(--magenta-stanley); border-radius: 10px; }
 
+.btn-scroll-top {
+    position: fixed;
+    bottom: 120px;
+    right: 40px;
+    z-index: 9999;
+    background-color: #c80d55;
+    color: white;
+    border: 2px solid white;
+    width: 50px;  /* Le damos un ancho fijo */
+    height: 50px; /* Le damos un alto fijo para que sea simétrico */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%); /* Un trapecio más compacto */
+    box-shadow: 0 0 20px rgba(200, 13, 85, 0.4);
+}
 
+.btn-scroll-top:hover {
+    background-color: white;
+    color: #c80d55;
+    transform: scale(1.1) translateY(-5px);
+}

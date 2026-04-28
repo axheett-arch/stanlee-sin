@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StanLee Sin | Axel & Tiago</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}?v=1.1">
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}?v=1.2">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
 
 <body style="background-color: #121212; color: white;">
@@ -169,7 +170,8 @@
                 </h4>
 
                 <div class="d-flex justify-content-center gap-4 mt-2">
-                    <a href="#" class="nav-link p-0 social-icon">
+
+                    <a href="https://x.com/KjdkeJ" target="_blank" class="nav-link p-0 social-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round">
@@ -179,7 +181,8 @@
                         </svg>
                     </a>
 
-                    <a href="#" class="nav-link p-0 social-icon">
+                    <a href="https://www.instagram.com/tiagotomasella_" target="_blank"
+                        class="nav-link p-0 social-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round">
@@ -190,12 +193,15 @@
                         </svg>
                     </a>
 
-                    <a href="#" class="nav-link p-0 social-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                    <a href="https://www.tiktok.com/@kjdkejdkdid?lang=es" target="_blank"
+                        class="nav-link p-0 social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round">
+                            stroke-linejoin="round"
+                            class="icon icon-tabler icons-tabler-outline icon-tabler-brand-tiktok">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+                            <path
+                                d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917" />
                         </svg>
                     </a>
                 </div>
@@ -203,14 +209,40 @@
         </div>
     </div>
 
-    <footer class="text-center py-4 mt-5 border-top border-secondary text-secondary">
+
+    <footer class="text-center py-4 mt-5 border-top border-secondary text-secondary"
+        style="background: rgba(0,0,0,0.8);">
         <p class="small mb-0">&copy; 2026 <span class="text-magenta hansip-font">StanLee Sin</span> - Axel Gomez &
-            Tiago
-            Tomasella</p>
+            Tiago Tomasella</p>
         <p class="small opacity-50">Resistencia Legendaria en cada pixel.</p>
     </footer>
 
+    <button id="btnScrollTop" class="btn-scroll-top" title="Volver al inicio">
+        <i class="ti ti-chevrons-up" style="font-size: 1.5rem;"></i>
+    </button>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const btnUp = document.getElementById("btnScrollTop");
+
+        window.onscroll = function() {
+            // Aparece el botón después de scrollear 400px
+            if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+                btnUp.style.display = "block";
+            } else {
+                btnUp.style.display = "none";
+            }
+        };
+
+        btnUp.onclick = function() {
+            // Deslizamiento suave hacia arriba
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        };
+    </script>
 
 </body>
 
