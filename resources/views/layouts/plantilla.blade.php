@@ -26,7 +26,7 @@
             </div>
 
             <div class="d-flex align-items-center">
-                <a href="/register" class="btn-outline-light btn-sm hansip-font ms-2"
+                <a href="/registro" class="btn-outline-light btn-sm hansip-font ms-2"
                     style="background-color: #c80d55; border-color: #c80d55; color: white; font-size: 0.8rem; padding: 7px 20px; text-decoration: none; transform: skewX(-10deg);">
                     UNIRSE AL CREW
                 </a>
@@ -159,6 +159,36 @@
     </div>
 
     <div class="container mt-5">
+
+        <div id="status-container"
+            style="position: fixed; top: 100px; left: 50%; transform: translateX(-50%); z-index: 9999; width: 90%; max-width: 400px;">
+        </div>
+
+        <script>
+            function mostrarMensajeEstatico(texto) {
+                const container = document.getElementById('status-container');
+
+                // Creamos el div del mensaje con el estilo de StanLee Sin
+                const alerta = document.createElement('div');
+                alerta.className = "hansip-font text-center py-3";
+                alerta.style.backgroundColor = "#c80d55";
+                alerta.style.color = "white";
+                alerta.style.borderRadius = "8px";
+                alerta.style.border = "2px solid white";
+                alerta.style.boxShadow = "0 4px 15px rgba(0,0,0,0.5)";
+                alerta.innerText = texto;
+
+                container.appendChild(alerta);
+
+                // Que desaparezca a los 3 segundos
+                setTimeout(() => {
+                    alerta.style.transition = "opacity 0.6s ease";
+                    alerta.style.opacity = "0";
+                    setTimeout(() => window.history.back(), 600);
+                }, 3000);
+            }
+        </script>
+
         @yield('contenido')
     </div>
     <div class="container mt-5 pt-5 mb-4">
@@ -243,7 +273,41 @@
             });
         };
     </script>
+    <div id="status-container"
+        style="position: fixed; top: 100px; left: 50%; transform: translateX(-50%); z-index: 9999; width: 90%; max-width: 400px;">
+    </div>
 
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const msgType = urlParams.get('msg');
+
+            if (msgType === 'login') {
+                crearCartel("¡Has iniciado sesión correctamente!");
+            } else if (msgType === 'register') {
+                crearCartel("¡Cuenta creada exitosamente!");
+            }
+        }
+
+        function crearCartel(texto) {
+            const container = document.getElementById('status-container');
+            if (!container) return; // Por seguridad
+
+            const alerta = document.createElement('div');
+            alerta.className = "hansip-font text-center py-3";
+            alerta.style.cssText =
+                "background-color: #c80d55; color: white; border-radius: 8px; border: 2px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.5);";
+            alerta.innerText = texto;
+
+            container.appendChild(alerta);
+
+            setTimeout(() => {
+                alerta.style.transition = "opacity 0.6s ease";
+                alerta.style.opacity = "0";
+                setTimeout(() => alerta.remove(), 600);
+            }, 3000);
+        }
+    </script>
 </body>
 
 </html>
