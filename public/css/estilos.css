@@ -170,3 +170,50 @@ div.card-esencia:hover {
     color: #c80d55;
     transform: scale(1.1) translateY(-5px);
 }
+
+/* ======================================================== */
+/* FORZAR MENÚ LATERAL OFFCANVAS A SER ESTÁTICO Y FIJO      */
+/* ======================================================== */
+
+#menuLateral {
+    /* Anulamos el comportamiento oculto de Bootstrap */
+    display: flex !important;
+    visibility: visible !important;
+
+    /* Lo fijamos a la izquierda de la pantalla */
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    height: 100vh !important;
+    transform: none !important; /* Evita que se mueva o se oculte */
+
+    /* Capa por encima pero integrada al flujo */
+    z-index: 1040;
+}
+
+/* Ocultamos el botón de cerrar (la X) porque ya no tiene sentido cerrar un menú estático */
+#menuLateral .btn-close {
+    display: none !important;
+}
+
+/*
+   MUY IMPORTANTE: Le damos un margen izquierdo a tu contenido principal
+   para que el menú de 300px no tape los textos ni el catálogo.
+*/
+body {
+    padding-left: 300px !important;
+}
+
+/*
+   Opcional: Si en celulares querés que vuelva a ser desplegable
+   para que no rompa la pantalla, descomentá las líneas de abajo:
+*/
+@media (max-width: 992px) {
+    #menuLateral {
+        position: fixed !important;
+        transform: translateX(-100%) !important;
+    }
+    body {
+        padding-left: 0 !important;
+    }
+}

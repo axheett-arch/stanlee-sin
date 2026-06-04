@@ -15,11 +15,6 @@
     <nav class="navbar navbar-dark bg-black border-bottom border-magenta py-3 sticky-top">
         <div class="container-fluid px-4">
             <div class="d-flex align-items-center">
-                <button class="btn text-white p-0 border-0 hansip-font me-3" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#menuLateral" style="font-size: 1.2rem; letter-spacing: 2px;">
-                    MENU
-                </button>
-
                 <a class="navbar-brand hansip-font" href="/" style="color: #c80d55; font-size: 2.2rem;">
                     StanLee Sin
                 </a>
