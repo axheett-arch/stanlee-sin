@@ -4,6 +4,7 @@ use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\CatalogController; // Agrupamos los uses arriba para que quede pro
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
     return view('layouts.principal');
 });
@@ -122,3 +123,4 @@ Route::get('/catalogo', function () {
 
     return view('catalogo', compact('destacado', 'productos'));
 })->name('catalogo');
+Route::post('/contacto', [ContactoController::class, 'store'])->name('contacto.store');
