@@ -20,17 +20,44 @@
                 </a>
             </div>
 
-            <div class="d-flex align-items-center">
-                <a href="/registro" class="btn-outline-light btn-sm hansip-font ms-2"
-                    style="background-color: #c80d55; border-color: #c80d55; color: white; font-size: 0.8rem; padding: 7px 20px; text-decoration: none; transform: skewX(-10deg);">
-                    UNIRSE A LA CREW
-                </a>
 
-                <a href="/login" class="btn btn-outline-light btn-sm hansip-font ms-2"
-                    style="border-color: white; color: white; font-size: 0.8rem; padding: 7px 20px; text-decoration: none;">
-                    INICIAR SESIÓN
-                </a>
-            </div>
+
+        <!-- Contenedor que agrupa dinámicamente los botones de sesión -->
+    <div class="d-flex align-items-center gap-2">
+
+        @guest
+
+        <a href="{{ route('register') }}"
+           class="btn btn-sm hansip-font text-white px-3 py-2 text-decoration-none"
+           style="background-color: #c80d55; border: none; font-size: 0.9rem; letter-spacing: 1px; transform: skewX(-10deg); display: inline-block; transition: 0.3s;">
+           <span style="transform: skewX(10deg); display: inline-block;">UNIRSE A LA CREW</span>
+        </a>
+
+        <a href="{{ route('login') }}"
+           class="btn btn-sm btn-outline-light hansip-font px-3 py-2 text-decoration-none"
+           style="border: 2px solid white; background: transparent; color: white; font-size: 0.9rem; letter-spacing: 1px; transform: skewX(-10deg); display: inline-block; transition: 0.3s;">
+           <span style="transform: skewX(10deg); display: inline-block;">INICIAR SESIÓN</span>
+        </a>
+    @endguest
+
+    @auth
+
+        <span class="text-white hansip-font me-3" style="font-size: 0.9rem; letter-spacing: 1px;">
+            ¡HOLA, <span class="text-magenta" style="color: #c80d55;">{{ strtoupper(auth()->user()->name) }}</span>!
+        </span>
+
+        <form action="{{ route('logout') }}" method="POST" class="m-0 p-0" style="display: inline;">
+            @csrf
+            <button type="submit"
+                    class="btn btn-sm btn-outline-light hansip-font px-3 py-2 text-decoration-none"
+                    style="border: 2px solid #c80d55; background: transparent; color: #c80d55; font-size: 0.9rem; letter-spacing: 1px; transform: skewX(-10deg); display: inline-block; transition: 0.3s; cursor: pointer;">
+                <span style="transform: skewX(10deg); display: inline-block; color: #c80d55;">CERRAR SESIÓN</span>
+            </button>
+        </form>
+    @endauth
+
+</div>
+
     </nav>
 
     <div class="offcanvas offcanvas-start bg-black text-white border-end border-magenta" tabindex="-1" id="menuLateral"
