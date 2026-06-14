@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\ContactoController;
-use App\Http\Controllers\CatalogController; // 👈 Clave para que funcione el catálogo
+use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\CartController; // 👈 NUEVO: Importamos el controlador del carrito
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,13 +42,48 @@ Route::get('/mensaje-enviado', function () {
 | Sección Catálogo (¡Conectado al Controlador!)
 |--------------------------------------------------------------------------
 */
-// Ahora sí, llama directo a la función index() de tu CatalogController
 Route::get('/catalogo', [CatalogController::class, 'index'])->name('catalogo');
+
+/*
+|--------------------------------------------------------------------------
+| Sección Carrito de Compras (Protegido por Autenticación)
+|--------------------------------------------------------------------------
+| Usamos el middleware 'auth' para cumplir la consigna de que solo los
+| usuarios clientes registrados puedan gestionar el inventario y comprar.
+*/
+Route::middleware(['auth'])->group(function () {
+    // Ver el carrito
+    Route::get('/carrito', [CartController::class, 'index'])->name('cart.index');
+
+    // Agregar un producto (el botón "EQUIPAR" va a apuntar acá)
+    Route::post('/carrito/agregar/{id}', [CartController::class, 'add'])->name('cart.add');
+
+    // Confirmar la operación y vaciar el carrito
+    Route::post('/carrito/confirmar', [CartController::class, 'confirm'])->name('cart.confirm');
+
+    // Eliminar un producto por completo del carrito
+    Route::post('/carrito/eliminar/{id}', [CartController::class, 'remove'])->name('cart.remove');
+
+    // Ruta para ver el ticket de la última compra
+    Route::get('/operacion-exitosa', [CartController::class, 'exitosa'])->name('cart.exitosa');
+
+    // Ruta que procesa la compra
+    Route::post('/carrito/confirmar', [CartController::class, 'confirm'])->name('cart.confirm');
+
+    // Ruta que muestra la pantalla ciberpunk de éxito
+    Route::get('/operacion-exitosa', [CartController::class, 'exitosa'])->name('cart.exitosa');
+
+    // Ruta para ver el historial de compras del usuario
+    Route::get('/mis-compras', [CartController::class, 'historial'])->name('compras.historial');
+
+    // Ruta para ver el detalle / factura de una compra específica
+    Route::get('/mis-compras/factura/{id}', [CartController::class, 'factura'])->name('compras.factura');
+});
 
 /*
 |--------------------------------------------------------------------------
 | RUTAS DE AUTENTICACIÓN (BREEZE)
 |--------------------------------------------------------------------------
 */
-// ⚠️ ¡ESTA LÍNEA ES LA QUE FALTA! Activa las rutas de login y register para que no explote la plantilla
+// Activa las rutas de login y register para que no explote la plantilla
 require __DIR__ . '/auth.php';

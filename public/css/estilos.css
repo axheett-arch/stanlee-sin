@@ -217,3 +217,32 @@ body {
         padding-left: 0 !important;
     }
 }
+
+/* Botón Flotante del Carrito Estilo Street-Tech */
+.btn-cart-tactic {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #000;
+    border: 2px solid #c80d55; /* El color magenta de su paleta */
+    box-shadow: 0 0 15px rgba(200, 13, 85, 0.3);
+    z-index: 9999;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+}
+
+.btn-cart-tactic:hover {
+    box-shadow: 0 0 25px rgba(200, 13, 85, 0.6), 2px 2px 0px #fff;
+    transform: scale(1.05) translate(-2px, -2px);
+    border-color: #fff;
+}
+
+/* El fondo del contador en magenta */
+.bg-magenta {
+    background-color: #c80d55 !important;
+}
+
+.btn-delete-tactic:hover i {
+    color: #c80d55 !important;
+    transform: scale(1.1);
+}

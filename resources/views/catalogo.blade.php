@@ -1,4 +1,3 @@
-
 @extends('layouts.plantilla')
 
 @section('contenido')
@@ -8,31 +7,45 @@
             CATALOGO <span class="text-magenta">EQUIPMENT</span>
         </h1>
         <p class="text-secondary hansip-font" style="letter-spacing: 3px; font-size: 0.8rem;">
-            SUMINISTROS TACTICOS DISPONIBLES // STOCK DINÁMICO
+            SUMINISTROS TACTICOS DISPONIBLES // STOCK DINAMICO
         </p>
     </div>
 
+    {{-- ALERTAS DE ÉXITO O ERROR (Para avisar cuando se agrega algo al inventario) --}}
+    @if(session('success'))
+        <div class="alert alert-success bg-black border-magenta text-magenta text-center hansip-font mb-4" style="font-size: 0.8rem; letter-spacing: 1px;">
+            // {{ session('success') }}
+        </div>
+    @endif
+
     <div class="row g-4">
 
-        {{-- CARD DESTACADA (SET MAESTRÍA) --}}
+        {{-- CARD DESTACADA (Cargada desde la Base de Datos) --}}
         @if(isset($destacado))
         <div class="col-12 mb-4">
-            <div class="card-esencia p-0 overflow-hidden border-magenta {{ $destacado['glow'] ? 'card-glow' : '' }}" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(200,13,85,0.05) 100%);">
+            <div class="card-esencia p-0 overflow-hidden border-magenta card-glow" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(200,13,85,0.05) 100%);">
                 <div class="row g-0 align-items-center">
                     <div class="col-md-4 bg-black text-center p-4">
-                        <img src="{{ asset('img/' . $destacado['imagen']) }}" class="img-fluid img-catalog" style="max-height: 300px;" alt="{{ $destacado['nombre'] }}">
+                        <img src="{{ asset('img/' . ($destacado->url_imagen ?? 'set-maestria.png')) }}" class="img-fluid img-catalog" style="max-height: 300px;" alt="{{ $destacado->nombre }}">
                     </div>
                     <div class="col-md-8">
                         <div class="p-4">
                             <div class="d-flex justify-content-between align-items-start mb-2">
                                 <div>
-                                    <span class="text-magenta hansip-font" style="font-size: 0.7rem;">{{ $destacado['subtitulo'] }}</span>
-                                    <h3 class="hansip-font h2 text-white mb-0">{{ $destacado['nombre'] }}</h3>
+                                    <span class="text-magenta hansip-font" style="font-size: 0.7rem;">ULTIMATE BUNDLE // SN-MAX</span>
+                                    <h3 class="hansip-font h2 text-white mb-0">{{ $destacado->nombre }}</h3>
                                 </div>
-                                <span class="text-magenta h3 hansip-font">{{ $destacado['precio'] }}</span>
+                                <span class="text-magenta h3 hansip-font">${{ number_format($destacado->precio, 0, ',', '.') }}</span>
                             </div>
-                            <p class="text-secondary fs-5 mb-4">{{ $destacado['descripcion'] }}</p>
-                            <a href="{{ route('en.desarrollo') }}" class="btn btn-stanley-legend px-5 py-3 btn-glitch text-decoration-none d-inline-block">RECLAMAR RECOMPENSA</a>
+                            <p class="text-secondary fs-5 mb-4">{{ $destacado->descripcion }}</p>
+
+                            {{-- Formulario POST para agregar el producto destacado --}}
+                            <form action="{{ route('cart.add', $destacado->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-stanley-legend px-5 py-3 btn-glitch text-white border-0">
+                                    RECLAMAR RECOMPENSA
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -40,31 +53,45 @@
         </div>
         @endif
 
-        {{-- BUCLE DE PRODUCTOS GENERALES --}}
+        {{-- BUCLE DE PRODUCTOS GENERALES (Eloquent Collection) --}}
         @foreach($productos as $prod)
-        <div class="col-md-4">
-            <div class="card-esencia h-100 p-0 overflow-hidden border-magenta {{ $prod['glow'] ? 'card-glow' : '' }}">
-                <div class="bg-black text-center p-4">
-                    <img src="{{ asset('img/' . $prod['imagen']) }}" class="img-fluid img-catalog" style="{{ $prod['filter'] ?? '' }}" alt="{{ $prod['nombre'] }}">
-                </div>
-                <div class="p-4 border-top border-secondary {{ $prod['style'] }}">
+            @php
+                $esEspecial = ($prod->id % 3 == 0);
+                $hasGlow = ($prod->id % 2 == 0 || $esEspecial);
+                $cardStyle = $esEspecial ? 'bg-dark-gradient' : '';
+                $imageFilter = $esEspecial ? 'filter: hue-rotate(40deg) saturate(1.5);' : '';
+            @endphp
 
-                    @if($prod['style'] === 'bg-dark-gradient') {{-- Estilo especial para Storm Drink --}}
+        <div class="col-md-4">
+            <div class="card-esencia h-100 p-0 overflow-hidden border-magenta {{ $hasGlow ? 'card-glow' : '' }}">
+                <div class="bg-black text-center p-4">
+                    <img src="{{ asset('img/' . ($prod->url_imagen ?? 'izanagi.png')) }}" class="img-fluid img-catalog" style="{{ $imageFilter }}" alt="{{ $prod->nombre }}">
+                </div>
+                <div class="p-4 border-top border-secondary {{ $cardStyle }}">
+
+                    @if($cardStyle === 'bg-dark-gradient')
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h3 class="hansip-font h5 text-white mb-0">{{ $prod['nombre'] }}</h3>
-                            <span class="text-magenta fw-bold">{{ $prod['precio'] }}</span>
+                            <h3 class="hansip-font h5 text-white mb-0">{{ $prod->nombre }}</h3>
+                            <span class="text-magenta fw-bold">${{ number_format($prod->precio, 0, ',', '.') }}</span>
                         </div>
-                    @else {{-- Estilo por defecto --}}
-                        <h3 class="hansip-font h5 text-white mb-2">{{ $prod['nombre'] }}</h3>
+                    @else
+                        <h3 class="hansip-font h5 text-white mb-2">{{ $prod->nombre }}</h3>
                     @endif
 
-                    <p class="text-secondary small mb-3">{{ $prod['descripcion'] }}</p>
+                    <p class="text-secondary small mb-3">{{ $prod->descripcion }}</p>
 
                     <div class="d-flex justify-content-between align-items-center">
-                        @if($prod['style'] !== 'bg-dark-gradient')
-                            <span class="text-magenta fw-bold">{{ $prod['precio'] }}</span>
+                        @if($cardStyle !== 'bg-dark-gradient')
+                            <span class="text-magenta fw-bold">${{ number_format($prod->precio, 0, ',', '.') }}</span>
                         @endif
-                        <a href="{{ route('en.desarrollo') }}" class="btn btn-stanley-legend {{ $prod['style'] === 'bg-dark-gradient' ? 'w-100' : 'px-3' }} py-1 btn-glitch text-decoration-none" style="font-size: 0.7rem;">EQUIPAR</a>
+
+                        {{-- Formulario POST para agregar el suministro al carrito --}}
+                        <form action="{{ route('cart.add', $prod->id) }}" method="POST" class="{{ $cardStyle === 'bg-dark-gradient' ? 'w-100' : '' }}">
+                            @csrf
+                            <button type="submit" class="btn btn-stanley-legend {{ $cardStyle === 'bg-dark-gradient' ? 'w-100' : 'px-3' }} py-1 btn-glitch text-white border-0" style="font-size: 0.7rem;">
+                                EQUIPAR
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
