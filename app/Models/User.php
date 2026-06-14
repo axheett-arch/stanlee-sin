@@ -19,18 +19,23 @@ class User extends Authenticatable
         'email',
         'password',
         'telefono',
-        'rol',
+        'is_admin', //
     ];
 
-
+    /**
+     * Los atributos que deben ocultarse para la serialización.
+     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-
+    /**
+     * Los atributos que deben ser casteados (convertidos a tipos específicos).
+     */
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'is_admin' => 'boolean',
     ];
 }

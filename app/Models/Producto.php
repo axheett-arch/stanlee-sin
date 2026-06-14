@@ -9,8 +9,8 @@ class Producto extends Model
     // Campos que permitimos llenar desde formularios o arrays de una sola vez
     protected $fillable = [
         'nombre',
-        'descripcion',
         'precio',
+        'descripcion',
         'stock',
         'url_imagen',
         'activo',

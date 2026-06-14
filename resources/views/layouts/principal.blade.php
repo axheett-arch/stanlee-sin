@@ -5,8 +5,8 @@
     <div class="row align-items-center min-vh-100 py-5 m-0">
         <div class="col-lg-7">
             <h1 class="hansip-font" style="font-size: clamp(3.5rem, 8vw, 6rem); line-height: 0.9;">
-                ESTILO <br>
-                <span style="color: #c80d55; text-shadow: 4px 4px 0px #000;">URBANO.</span>
+                BIENVENIDO, <br>
+                <span style="color: #c80d55; text-shadow: 4px 4px 0px #000;">MAESTRO.</span>
             </h1>
 
             <p class="mt-4 fs-4 text-secondary fw-light" style="max-width: 550px;">

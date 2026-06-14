@@ -146,6 +146,17 @@
                     </a>
                 </li>
 
+                {{-- SI EL USUARIO ESTÁ LOGUEADO Y ADEMÁS ES ADMIN, MUESTRA EL ACCESO AL PANEL --}}
+                @if(Auth::check() && Auth::user()->is_admin == 1)
+                    <li class="nav-item mb-2 border-top border-secondary pt-2 mt-2">
+                        <span class="text-magenta small font-monospace d-block mb-1 px-3" style="font-size: 0.7rem;">// CORE ADMIN</span>
+                        <a class="nav-link hansip-font fs-5 d-flex align-items-center text-magenta" href="{{ route('admin.index') }}">
+                            <i class="ti ti-device-laptop me-2" style="font-size: 1.6rem;"></i>
+                            <span>PANEL CONTROL</span>
+                        </a>
+                    </li>
+                @endif
+
                 <li class="my-3 border-bottom border-secondary opacity-25"></li>
 
                 <li class="nav-item mb-2">
