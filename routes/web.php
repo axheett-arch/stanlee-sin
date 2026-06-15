@@ -73,6 +73,12 @@ Route::middleware(['auth'])->group(function () {
     // Ruta para ver el detalle / factura de una compra específica
     Route::get('/mis-compras/factura/{id}', [CartController::class, 'factura'])->name('compras.factura');
 
+    // 👤 MÓDULO "MI PERFIL" DEL CLIENTE (POTENCIADO)
+    Route::get('/mi-perfil', [CartController::class, 'perfil'])->name('perfil.index');
+
+    // 🛠️ ACCIÓN TÁCTICA: Procesar los cambios de alias y contraseña en el perfil
+    Route::post('/mi-perfil/actualizar', [CartController::class, 'perfilUpdate'])->name('perfil.update');
+
 
     // =========================================================================
     // 🛡️ CORE ADMINISTRADOR (Rutas de Control)
@@ -109,6 +115,14 @@ Route::middleware(['auth'])->group(function () {
     // Ruta para procesar la respuesta interna
     Route::post('/admin/contactos/{id}/responder', [AdminController::class, 'contactoResponder'])->name('admin.contactos.responder');
 
+    // --- Módulo de Pedidos Pendientes ---
+    Route::get('/admin/pedidos', [AdminController::class, 'pedidosIndex'])->name('admin.pedidos.index');
+    Route::patch('/admin/pedidos/{id}/despachar', [AdminController::class, 'pedidoDespachar'])->name('admin.pedidos.despachar');
+
+    // --- Módulo de Usuarios ---
+    Route::get('/admin/usuarios', [AdminController::class, 'usuariosIndex'])->name('admin.usuarios.index');
+    Route::patch('/admin/usuarios/{id}/toggle-role', [AdminController::class, 'usuarioToggleRole'])->name('admin.usuarios.toggle-role');
+
 });
 
 /*
@@ -116,5 +130,4 @@ Route::middleware(['auth'])->group(function () {
 | RUTAS DE AUTENTICACIÓN (BREEZE)
 |--------------------------------------------------------------------------
 */
-// Activa las rutas de login y register nativas de Breeze
 require __DIR__ . '/auth.php';

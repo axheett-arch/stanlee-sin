@@ -31,6 +31,14 @@
         .dropdown-toggle[aria-expanded="true"]::after {
             transform: rotate(180deg);
         }
+
+        /* Efecto hover premium para el enlace del perfil en la Navbar */
+        .profile-link {
+            transition: opacity 0.2s ease;
+        }
+        .profile-link:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
 
@@ -111,20 +119,17 @@
                             {{ $totalItems }}
                         </span>
                     @endif
-                    </button>
 
-                    <span class="text-white hansip-font me-3" style="font-size: 0.9rem; letter-spacing: 1px;">
-                        ¡HOLA, <span class="text-magenta"
-                            style="color: #c80d55;">{{ strtoupper(auth()->user()->name) }}</span>!
-                    </span>
+                    <a href="{{ route('perfil.index') }}" class="text-white hansip-font me-3 text-decoration-none profile-link" style="font-size: 0.9rem; letter-spacing: 1px;" title="Ver mi perfil">
+                        ¡HOLA, <span class="text-magenta" style="color: #c80d55;">{{ strtoupper(auth()->user()->name) }}</span>!
+                    </a>
 
                     <form action="{{ route('logout') }}" method="POST" class="m-0 p-0" style="display: inline;">
                         @csrf
                         <button type="submit"
                             class="btn btn-sm btn-outline-light hansip-font px-3 py-2 text-decoration-none"
                             style="border: 2px solid #c80d55; background: transparent; color: #c80d55; font-size: 0.9rem; letter-spacing: 1px; transform: skewX(-10deg); display: inline-block; transition: 0.3s; cursor: pointer;">
-                            <span style="transform: skewX(10deg); display: inline-block; color: #c80d55;">CERRAR
-                                SESIÓN</span>
+                            <span style="transform: skewX(10deg); display: inline-block; color: #c80d55;">CERRAR SESIÓN</span>
                         </button>
                     </form>
                 @endauth
@@ -156,6 +161,7 @@
                         </svg>
                         <span>INICIO</span>
                     </a>
+                </ Thames>
                 </li>
 
                 <li class="nav-item mb-2">
@@ -171,6 +177,16 @@
                         <span>CATALOGO</span>
                     </a>
                 </li>
+
+                @auth
+                <li class="nav-item mb-2">
+                    <a class="nav-link hansip-font fs-5 d-flex align-items-center px-2 {{ request()->routeIs('perfil.index') ? 'text-magenta fw-bold' : '' }}"
+                        href="{{ route('perfil.index') }}">
+                        <i class="ti ti-user-circle me-2" style="font-size: 1.5rem;"></i>
+                        <span>MI PERFIL</span>
+                    </a>
+                </li>
+                @endauth
 
                 <li class="nav-item mb-2">
                     <a class="nav-link hansip-font fs-5 d-flex align-items-center px-2 {{ Auth::check() ? '' : 'disabled opacity-50' }}"
@@ -208,7 +224,7 @@
                             </span>
                         </a>
 
-                        <div class="collapse ps-3 mt-2 {{ request()->routeIs('admin.dashboard') || request()->routeIs('admin.index') || request()->routeIs('admin.contactos.index') ? 'show' : '' }}"
+                        <div class="collapse ps-3 mt-2 {{ request()->routeIs('admin.dashboard') || request()->routeIs('admin.index') || request()->routeIs('admin.contactos.index') || request()->routeIs('admin.pedidos.index') || request()->routeIs('admin.usuarios.index') ? 'show' : '' }}"
                             id="menuAdminColapsable">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li class="mb-1">
@@ -225,12 +241,23 @@
                                     </a>
                                 </li>
 
-                                {{-- 📨 ENLACE REAL INTEGRADO A TU MENÚ --}}
+                                {{-- 📨 CENTRAL DE CONSULTAS --}}
                                 <li class="mb-1">
                                     <a href="{{ route('admin.contactos.index') }}"
                                         class="nav-link font-monospace d-flex align-items-center py-2 px-2 rounded-0 {{ request()->routeIs('admin.contactos.index') ? 'active-tactico' : 'text-secondary' }}">
-                                        <i class="ti ti-message me-2" style="font-size: 1.1rem;"></i> CENTRAL
-                                        CONSULTAS
+                                        <i class="ti ti-message me-2" style="font-size: 1.1rem;"></i> CENTRAL CONSULTAS
+                                    </a>
+                                </li>
+
+                                <li class="mb-1" style="list-style: none;">
+                                    <a href="{{ route('admin.pedidos.index') }}" class="nav-link font-monospace py-2 px-2 d-flex align-items-center {{ request()->routeIs('admin.pedidos.index') ? 'active-tactico text-white' : 'text-secondary' }}">
+                                        <i class="ti ti-package me-2"></i> PEDIDOS PENDIENTES
+                                    </a>
+                                </li>
+
+                                <li class="mb-1" style="list-style: none;">
+                                    <a href="{{ route('admin.usuarios.index') }}" class="nav-link font-monospace py-2 px-2 d-flex align-items-center {{ request()->routeIs('admin.usuarios.index') ? 'active-tactico text-white' : 'text-secondary' }}">
+                                        <i class="ti ti-users me-2"></i> GESTIÓN USUARIOS
                                     </a>
                                 </li>
                             </ul>

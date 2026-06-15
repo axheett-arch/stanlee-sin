@@ -11,8 +11,8 @@
     {{-- Grilla de Tarjetas de Métricas (KPIs) --}}
     <div class="row g-4 mb-5">
 
-        {{-- Tarjeta 1: Total Facturado --}}
-        <div class="col-12 col-md-6 col-lg-3">
+        {{-- Tarjeta 1: Total Facturado (Un toque más ancha para que no corte el número) --}}
+        <div class="col-12 col-md-6 col-lg-3 col-xl-3">
             <div class="card bg-black border-magenta p-4 h-100" style="box-shadow: 0 0 15px rgba(200, 13, 85, 0.1);">
                 <div class="d-flex justify-content-between align-items-start mb-3">
                     <span class="text-secondary small font-monospace">// CAPITAL INTEGRAL</span>
@@ -24,31 +24,43 @@
         </div>
 
         {{-- Tarjeta 2: Órdenes Procesadas --}}
-        <div class="col-12 col-md-6 col-lg-3">
+        <div class="col-12 col-md-6 col-lg-2 col-xl">
             <div class="card bg-black border-secondary p-4 h-100">
                 <div class="d-flex justify-content-between align-items-start mb-3">
                     <span class="text-secondary small font-monospace">// LOGÍSTICA</span>
                     <i class="ti ti-package text-info fs-2"></i>
                 </div>
                 <h3 class="font-monospace fw-bold text-white mb-1">#{{ $totalOrdenes }}</h3>
-                <p class="small font-monospace text-info mb-0">PEDIDOS PROCESADOS</p>
+                <p class="small font-monospace text-info mb-0">PROCESADOS</p>
             </div>
         </div>
 
-        {{-- Tarjeta 3: Arsenal de Productos --}}
-        <div class="col-12 col-md-6 col-lg-3">
+        {{-- 🚨 Tarjeta 3: Pedidos Pendientes (Cola de Espera) --}}
+        <div class="col-12 col-md-6 col-lg-2 col-xl">
+            <div class="card bg-black border-warning p-4 h-100" style="box-shadow: 0 0 15px rgba(255, 193, 7, 0.05);">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="text-secondary small font-monospace">// COLA ESPERA</span>
+                    <i class="ti ti-alert-triangle text-warning fs-2"></i>
+                </div>
+                <h3 class="font-monospace fw-bold text-white mb-1">#{{ $pedidosPendientesCount }}</h3>
+                <p class="small font-monospace text-warning mb-0">PENDIENTES</p>
+            </div>
+        </div>
+
+        {{-- Tarjeta 4: Arsenal de Productos --}}
+        <div class="col-12 col-md-6 col-lg-2 col-xl">
             <div class="card bg-black border-secondary p-4 h-100">
                 <div class="d-flex justify-content-between align-items-start mb-3">
                     <span class="text-secondary small font-monospace">// STOCK GENERAL</span>
                     <i class="ti ti-shield-half-filled text-success fs-2"></i>
                 </div>
                 <h3 class="font-monospace fw-bold text-white mb-1">{{ $totalSuministros }} ITEMS</h3>
-                <p class="small font-monospace text-success mb-0">SUMINISTROS ACTIVOS</p>
+                <p class="small font-monospace text-success mb-0">ACTIVOS</p>
             </div>
         </div>
 
-        {{-- Tarjeta 4: Usuarios Registrados --}}
-        <div class="col-12 col-md-6 col-lg-3">
+        {{-- Tarjeta 5: Usuarios Registrados --}}
+        <div class="col-12 col-md-6 col-lg-3 col-xl">
             <div class="card bg-black border-secondary p-4 h-100">
                 <div class="d-flex justify-content-between align-items-start mb-3">
                     <span class="text-secondary small font-monospace">// IDENTIDADES</span>
@@ -80,6 +92,7 @@
 
 <style>
     .border-magenta { border: 1px solid #c80d55 !important; }
+    .border-warning { border: 1px solid #ffc107 !important; }
     .btn-outline-magenta { border: 1px solid #c80d55; color: #c80d55; }
     .btn-outline-magenta:hover { background-color: #c80d55; color: white; }
 </style>

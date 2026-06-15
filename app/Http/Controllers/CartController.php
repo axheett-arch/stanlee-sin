@@ -160,4 +160,86 @@ class CartController extends Controller
 
         return view('factura', compact('venta'));
     }
+
+    // ==========================================
+    // 👤 MÓDULO PERFIL DE USUARIO (NUEVO)
+    // ==========================================
+    // ==========================================
+    // 👤 MÓDULO PERFIL DE USUARIO (POTENCIADO)
+    // ==========================================
+    public function perfil()
+    {
+        $user = Auth::user();
+
+        // 1. 🚨 RANGOS DE LEALTAD: Calculamos la sumatoria total invertida por este usuario
+        $totalInvertido = \App\Models\Venta::where('user_id', $user->id)->sum('total');
+
+        // Determinamos la etiqueta del rango según el gasto acumulado
+        if ($totalInvertido >= 300000) {
+            $rangoLealtad = 'CLIENTE ELITE // SINDATO';
+            $rangoColor = '#c80d55'; // Magenta neón
+        } elseif ($totalInvertido >= 100000) {
+            $rangoLealtad = 'OPERADOR STREET';
+            $rangoColor = '#0dcaf0'; // Info cian
+        } else {
+            $rangoLealtad = 'RECLUTA BASE';
+            $rangoColor = '#6c757d'; // Gris secundario
+        }
+
+        // 2. Buscamos las últimas 5 órdenes (Ventas)
+        $ultimasCompras = \App\Models\Venta::with('detalles.producto')
+                                ->where('user_id', $user->id)
+                                ->orderBy('created_at', 'desc')
+                                ->take(5)
+                                ->get();
+
+        // 3. 📨 BANDEJA DE MENSAJES: Traemos las consultas que este usuario mandó por /contacto
+        // Vinculamos usando el email del usuario logueado
+        $misConsultas = \App\Models\Contacto::where('email', $user->email)
+                                            ->orderBy('created_at', 'desc')
+                                            ->get();
+
+        return view('perfil', compact('user', 'ultimasCompras', 'misConsultas', 'rangoLealtad', 'rangoColor', 'totalInvertido'));
+    }
+
+    // 🛠️ ACCIÓN: Procesar la actualización de datos y contraseña
+    // 🛠️ ACCIÓN: Procesar la actualización de datos, contraseña y AVATAR
+    public function perfilUpdate(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'password' => 'nullable|string|min:8|confirmed',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validación de la foto (Max 2MB)
+        ]);
+
+        // Actualizamos el alias básico
+        $user->name = $request->name;
+
+        // Si el operador digitó una nueva clave, la encriptamos
+        if (!empty($request->password)) {
+            $user->password = \Illuminate\Support\Facades\Hash::make($request->password);
+        }
+
+        // 📸 PROCESAMIENTO DEL AVATAR
+        if ($request->hasFile('avatar')) {
+            // Si el usuario ya tenía un avatar personalizado que no sea el icono por defecto, lo borramos para no acumular basura
+            if ($user->avatar && $user->avatar !== 'default-avatar.png' && \Illuminate\Support\Facades\Storage::disk('public')->exists('avatars/' . $user->avatar)) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete('avatars/' . $user->avatar);
+            }
+
+            // Guardamos el nuevo archivo en storage/app/public/avatars
+            $file = $request->file('avatar');
+            $filename = time() . '_' . $user->id . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('avatars', $filename, 'public');
+
+            // Guardamos el nombre del archivo en la base de datos (necesitás tener la columna 'avatar' en tu tabla 'users')
+            $user->avatar = $filename;
+        }
+
+        $user->save();
+
+        return redirect()->route('perfil.index')->with('success', 'Credenciales y registro biométrico actualizados correctamente.');
+    }
 }

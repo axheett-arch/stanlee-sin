@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Producto;
 use App\Models\User;
 use App\Models\Contacto; // 👈 Importamos tu modelo real para la bandeja de entrada
+use App\Models\Pedido;   // 👈 Importamos el modelo Pedido para la gestión de órdenes
 
 class AdminController extends Controller
 {
+    // 📊 Centro neurálgico del Dashboard
     // 📊 Centro neurálgico del Dashboard
     public function dashboard()
     {
@@ -21,11 +23,22 @@ class AdminController extends Controller
         $totalUsuarios = User::count();
         $totalStockFisico = Producto::where('activo', true)->sum('stock');
 
-        // Datos de simulación temporales para las órdenes y la recaudación
-        $totalOrdenes = 12;
-        $totalFacturado = 755400;
+        // 🛠️ CORREGIDO: Contamos ÚNICAMENTE las órdenes que ya fueron despachadas (Historial)
+        $totalOrdenes = Pedido::where('estado', 'despachado')->count();
 
-        return view('admin.dashboard', compact('totalSuministros', 'totalUsuarios', 'totalStockFisico', 'totalOrdenes', 'totalFacturado'));
+        // 🚨 COLA DE ESPERA: Contamos las órdenes que siguen en estado pendiente
+        $pedidosPendientesCount = Pedido::where('estado', 'pendiente')->count();
+
+        $totalFacturado = Pedido::sum('total');
+
+        return view('admin.dashboard', compact(
+            'totalSuministros',
+            'totalUsuarios',
+            'totalStockFisico',
+            'totalOrdenes',
+            'totalFacturado',
+            'pedidosPendientesCount'
+        ));
     }
 
     // 1. Listado de todos los productos para el Administrador (Con Buscador por AJAX)
@@ -211,23 +224,21 @@ class AdminController extends Controller
         ]);
     }
 
-   // 📨 Listado de contactos recibidos (Bandeja Admin)
+    // 📨 Listado de contactos recibidos (Bandeja Admin)
     public function contactosIndex()
     {
         if (!Auth::check() || !Auth::user()->is_admin) {
             return redirect()->route('catalogo')->with('error', 'ACCESO DENEGADO.');
         }
 
-        // Cargamos los registros desde tu modelo real 'Contacto'
         $contactos = Contacto::orderBy('leido', 'asc')
                              ->orderBy('created_at', 'desc')
                              ->get();
 
-        // Apuntamos exactamente a 'admin.consultass'
         return view('admin.consultass', compact('contactos'));
     }
 
-    // 👁️ NUEVO: Marcar mensaje como Atendido/Leído
+    // 👁️ Marcar mensaje como Atendido/Leído
     public function contactoLeer($id)
     {
         if (!Auth::check() || !Auth::user()->is_admin) { return redirect()->back(); }
@@ -239,7 +250,7 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Mensaje archivado en el registro de leídos.');
     }
 
-    // 🗑️ NUEVO: Eliminar mensaje de la base de datos
+    // 🗑️ Eliminar mensaje de la base de datos
     public function contactoDestroy($id)
     {
         if (!Auth::check() || !Auth::user()->is_admin) { return redirect()->back(); }
@@ -248,6 +259,73 @@ class AdminController extends Controller
         $contacto->delete();
 
         return redirect()->back()->with('success', 'Mensaje eliminado del registro central.');
+    }
+
+    // ==========================================
+    // 📦 GESTIÓN DE PEDIDOS PENDIENTES
+    // ==========================================
+
+    public function pedidosIndex()
+    {
+        if (!Auth::check() || !Auth::user()->is_admin) {
+            return redirect()->route('catalogo')->with('error', 'ACCESO DENEGADO.');
+        }
+
+        // ⏳ Órdenes que hay que despachar sí o sí
+        $pedidosPendientes = Pedido::with(['user', 'detalles.producto'])
+                                    ->where('estado', 'pendiente')
+                                    ->orderBy('created_at', 'desc')
+                                    ->get();
+
+        // ✅ Historial de lo que la crew ya despachó
+        $pedidosDespachados = Pedido::with(['user', 'detalles.producto'])
+                                        ->where('estado', 'despachado')
+                                        ->orderBy('updated_at', 'desc')
+                                        ->get();
+
+        return view('admin.pedidos', compact('pedidosPendientes', 'pedidosDespachados'));
+    }
+
+    public function pedidoDespachar(int $id)
+    {
+        if (!Auth::check() || !Auth::user()->is_admin) { return redirect()->back(); }
+
+        $pedido = Pedido::findOrFail($id);
+        $pedido->estado = 'despachado';
+        $pedido->save();
+
+        return redirect()->back()->with('success', "¡Orden #{$id} marcada como despachada!");
+    }
+
+    // ==========================================
+    // 👥 GESTIÓN DE USUARIOS
+    // ==========================================
+
+    public function usuariosIndex()
+    {
+        if (!Auth::check() || !Auth::user()->is_admin) {
+            return redirect()->route('catalogo')->with('error', 'ACCESO DENEGADO.');
+        }
+
+        $usuarios = User::orderBy('created_at', 'desc')->get();
+
+        return view('admin.usuarios', compact('usuarios'));
+    }
+
+    public function usuarioToggleRole($id)
+    {
+        if (!Auth::check() || !Auth::user()->is_admin) { return redirect()->back(); }
+
+        // Medida táctica de seguridad: No podés sacarte el admin a vos mismo
+        if ($id == Auth::id()) {
+            return redirect()->back()->with('error', 'No podés revocar tus propios permisos.');
+        }
+
+        $usuario = User::findOrFail($id);
+        $usuario->is_admin = !$usuario->is_admin;
+        $usuario->save();
+
+        return redirect()->back()->with('success', "Rango del usuario '{$usuario->name}' actualizado.");
     }
 
     // Función auxiliar privada para calcular el texto neón del stock al vuelo
