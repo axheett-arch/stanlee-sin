@@ -8,6 +8,27 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}?v=1.2">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+    <style>
+        /* 🌟 EFECTO NEÓN PARA LAS PESTAÑAS ACTIVAS DEL ADMIN */
+        .active-tactico {
+            background: linear-gradient(90deg, rgba(200, 13, 85, 0.15) 0%, rgba(0,0,0,0) 100%) !important;
+            color: #c80d55 !important;
+            border-left: 3px solid #c80d55 !important;
+            font-weight: bold;
+        }
+        .btn-delete-tactic:hover i {
+            color: #dc3545 !important;
+            transform: scale(1.15);
+        }
+        /* Flecha del colapsable */
+        .dropdown-toggle::after {
+            transition: transform 0.3s ease;
+        }
+        .dropdown-toggle[aria-expanded="true"]::after {
+            transform: rotate(180deg);
+        }
+    </style>
 </head>
 
 <body style="background-color: #121212; color: white;">
@@ -16,7 +37,7 @@
     <nav class="navbar navbar-dark bg-black border-bottom border-magenta py-3 sticky-top">
         <div class="container-fluid px-4">
             <div class="d-flex align-items-center">
-                {{-- Botón menú lateral izquierdo (hamburguesa) si lo tienen asociado --}}
+                {{-- Botón menú lateral izquierdo (hamburguesa) --}}
                 <button class="navbar-toggler border-0 p-0 me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -88,7 +109,7 @@
         </div>
     </nav>
 
-    {{-- PANEL LATERAL IZQUIERDO (MENÚ GENERAL DE NAVEGACIÓN) --}}
+    {{-- PANEL LATERAL  (MENÚ GENERAL DE NAVEGACIÓN) --}}
     <div class="offcanvas offcanvas-start bg-black text-white border-end border-magenta" tabindex="-1" id="menuLateral" style="width: 300px;">
         <div class="offcanvas-header border-bottom border-secondary">
             <h5 class="offcanvas-title hansip-font" style="color: #c80d55;">StanLee Sin</h5>
@@ -97,11 +118,17 @@
 
         <div class="offcanvas-body">
             <ul class="navbar-nav">
+
+                {{-- SECCIÓN PÚBLICA DEL SITIO --}}
+                <li class="nav-item mb-1">
+                    <span class="text-secondary small font-monospace d-block mb-1 px-2" style="font-size: 0.72rem;">// INTERFAZ PÚBLICA</span>
+                </li>
+
                 <li class="nav-item mb-2">
-                    <a class="nav-link hansip-font fs-5 d-flex align-items-center" href="/">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24"
+                    <a class="nav-link hansip-font fs-5 d-flex align-items-center px-2" href="/">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="me-2" style="position: relative; top: -3px;">
+                            stroke-linejoin="round" class="me-2" style="position: relative; top: -2px;">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
                             <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
@@ -112,10 +139,10 @@
                 </li>
 
                 <li class="nav-item mb-2">
-                    <a class="nav-link hansip-font fs-5 d-flex align-items-center" href="/catalogo">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24"
+                    <a class="nav-link hansip-font fs-5 d-flex align-items-center px-2" href="/catalogo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="me-2" style="position: relative; top: -3px;">
+                            stroke-linejoin="round" class="me-2" style="position: relative; top: -2px;">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304" />
                             <path d="M9 11v-5a3 3 0 0 1 6 0v5" />
@@ -125,17 +152,17 @@
                 </li>
 
                 <li class="nav-item mb-2">
-                    <a class="nav-link hansip-font fs-5 d-flex align-items-center {{ Auth::check() ? '' : 'disabled opacity-50' }}" href="{{ route('compras.historial') }}">
-                        <i class="ti ti-history me-2" style="font-size: 1.6rem;"></i>
+                    <a class="nav-link hansip-font fs-5 d-flex align-items-center px-2 {{ Auth::check() ? '' : 'disabled opacity-50' }}" href="{{ route('compras.historial') }}">
+                        <i class="ti ti-history me-2" style="font-size: 1.5rem;"></i>
                         <span>MIS COMPRAS</span>
                     </a>
                 </li>
 
                 <li class="nav-item mb-2">
-                    <a class="nav-link hansip-font fs-5 d-flex align-items-center" href="/nosotros">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24"
+                    <a class="nav-link hansip-font fs-5 d-flex align-items-center px-2" href="/nosotros">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="me-2" style="position: relative; top: -3px;">
+                            stroke-linejoin="round" class="me-2" style="position: relative; top: -2px;">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
                             <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
@@ -146,24 +173,52 @@
                     </a>
                 </li>
 
-                {{-- SI EL USUARIO ESTÁ LOGUEADO Y ADEMÁS ES ADMIN, MUESTRA EL ACCESO AL PANEL --}}
+                {{-- 🔒 DESPLEGABLE INTERACTIVO: GESTIÓN DE ADMINISTRACIÓN --}}
                 @if(Auth::check() && Auth::user()->is_admin == 1)
-                    <li class="nav-item mb-2 border-top border-secondary pt-2 mt-2">
-                        <span class="text-magenta small font-monospace d-block mb-1 px-3" style="font-size: 0.7rem;">// CORE ADMIN</span>
-                        <a class="nav-link hansip-font fs-5 d-flex align-items-center text-magenta" href="{{ route('admin.index') }}">
-                            <i class="ti ti-device-laptop me-2" style="font-size: 1.6rem;"></i>
-                            <span>PANEL CONTROL</span>
+                    <li class="nav-item mb-2 border-top border-secondary pt-3 mt-3">
+                        <a class="nav-link hansip-font fs-5 d-flex align-items-center text-magenta dropdown-toggle justify-content-between px-2"
+                           href="#menuAdminColapsable"
+                           data-bs-toggle="collapse"
+                           role="button"
+                           aria-expanded="{{ (request()->routeIs('admin.dashboard') || request()->routeIs('admin.index')) ? 'true' : 'false' }}"
+                           aria-controls="menuAdminColapsable">
+                            <span class="d-flex align-items-center">
+                                <i class="ti ti-settings me-2" style="font-size: 1.5rem;"></i>
+                                GESTIÓN ADMIN
+                            </span>
                         </a>
+
+                        <div class="collapse ps-3 mt-2 {{ (request()->routeIs('admin.dashboard') || request()->routeIs('admin.index') || request()->routeIs('admin.contactos.index')) ? 'show' : '' }}" id="menuAdminColapsable">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li class="mb-1">
+                                    <a href="{{ route('admin.dashboard') }}" class="nav-link font-monospace d-flex align-items-center py-2 px-2 rounded-0 {{ request()->routeIs('admin.dashboard') ? 'active-tactico' : 'text-secondary' }}">
+                                        <i class="ti ti-dashboard me-2" style="font-size: 1.1rem;"></i> DASHBOARD CORE
+                                    </a>
+                                </li>
+                                <li class="mb-1">
+                                    <a href="{{ route('admin.index') }}" class="nav-link font-monospace d-flex align-items-center py-2 px-2 rounded-0 {{ request()->routeIs('admin.index') ? 'active-tactico' : 'text-secondary' }}">
+                                        <i class="ti ti-building-store me-2" style="font-size: 1.1rem;"></i> INVENTARIO CRUD
+                                    </a>
+                                </li>
+
+                                {{-- 📨 ENLACE REAL INTEGRADO A TU MENÚ --}}
+                                <li class="mb-1">
+                                    <a href="{{ route('admin.contactos.index') }}" class="nav-link font-monospace d-flex align-items-center py-2 px-2 rounded-0 {{ request()->routeIs('admin.contactos.index') ? 'active-tactico' : 'text-secondary' }}">
+                                        <i class="ti ti-message me-2" style="font-size: 1.1rem;"></i> CENTRAL CONSULTAS
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                 @endif
 
                 <li class="my-3 border-bottom border-secondary opacity-25"></li>
 
                 <li class="nav-item mb-2">
-                    <a class="nav-link hansip-font fs-6 text-secondary d-flex align-items-center" href="/comercializacion">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                    <a class="nav-link hansip-font fs-6 text-secondary d-flex align-items-center px-2" href="/comercializacion">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="me-2" style="position: relative; top: -3px;">
+                            stroke-linejoin="round" class="me-2" style="position: relative; top: -2px;">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M2 3h1a2 2 0 0 1 2 2v10a2 2 0 0 0 2 2h15" />
                             <path d="M9 9a3 3 0 0 1 3 -3h4a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-4a3 3 0 0 1 -3 -3l0 -2" />
@@ -174,10 +229,10 @@
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link hansip-font fs-6 text-secondary d-flex align-items-center" href="/contacto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                    <a class="nav-link hansip-font fs-6 text-secondary d-flex align-items-center px-2" href="/contacto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="me-2" style="position: relative; top: -3px;">
+                            stroke-linejoin="round" class="me-2" style="position: relative; top: -2px;">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" />
                             <path d="M3 7l9 6l9 -6" />
@@ -186,10 +241,10 @@
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link hansip-font fs-6 text-secondary d-flex align-items-center" href="/consultas">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                    <a class="nav-link hansip-font fs-6 text-secondary d-flex align-items-center px-2" href="/consultas">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="me-2" style="position: relative; top: -3px;">
+                            stroke-linejoin="round" class="me-2" style="position: relative; top: -2px;">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M12.802 2.165l5.575 2.389c.48 .206 .863 .589 1.07 1.07l2.388 5.574c.22 .512 .22 1.092 0 1.604l-2.389 5.575c-.206 .48 -.589 .863 -1.07 1.07l-5.574 2.388c-.512 .22 -1.092 .22 -1.604 0l-5.575 -2.389a2.036 2.036 0 0 1 -1.07 -1.07l-2.388 -5.574a2.036 2.036 0 0 1 0 -1.604l2.389 -5.575c.206 -.48 .589 -.863 1.07 -1.07l5.574 -2.388a2.036 2.036 0 0 1 1.604 0" />
                             <path d="M12 16v.01" />
@@ -199,10 +254,10 @@
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link hansip-font fs-6 text-secondary d-flex align-items-center" href="/terminos">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                    <a class="nav-link hansip-font fs-6 text-secondary d-flex align-items-center px-2" href="/terminos">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="me-2" style="position: relative; top: -3px;">
+                            stroke-linejoin="round" class="me-2" style="position: relative; top: -2px;">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M15 21h-9a3 3 0 0 1 -3 -3v-1h10v2a2 2 0 0 0 4 0v-14a2 2 0 1 1 2 2h-2m2 -4h-11a3 3 0 0 0 -3 3v11" />
                             <path d="M9 7l4 0" />
@@ -345,7 +400,6 @@
 
             <div class="offcanvas-body d-flex flex-column justify-content-between">
                 @if(count($cart) > 0)
-                    {{-- Lista de productos acumulados --}}
                     <div class="overflow-y-auto flex-grow-1 pe-1" style="max-height: 70vh;">
                         @php $totalAcumulado = 0; @endphp
                        @foreach($cart as $id => $details)
@@ -359,11 +413,9 @@
                                     </div>
                                 </div>
 
-                                {{-- Contenedor de precio y botón de eliminar --}}
                                 <div class="d-flex align-items-center gap-3">
                                     <span class="text-magenta small hansip-font">${{ number_format($details['precio'] * $details['cantidad'], 0, ',', '.') }}</span>
 
-                                    {{-- Formulario táctico para remover el ítem --}}
                                     <form action="{{ route('cart.remove', $id) }}" method="POST" class="m-0 p-0">
                                         @csrf
                                         <button type="submit" class="btn p-0 border-0 text-secondary btn-delete-tactic" title="Remover Suministro" style="background: transparent; cursor: pointer;">
@@ -375,7 +427,6 @@
                         @endforeach
                     </div>
 
-                    {{-- Footer del panel con el Total y Botones de Acción --}}
                     <div class="border-top border-secondary pt-3 mt-auto">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <span class="hansip-font small text-secondary">TOTAL ESTIMADO:</span>
@@ -394,7 +445,6 @@
                         </div>
                     </div>
                 @else
-                    {{-- Estado vacío del inventario --}}
                     <div class="text-center my-auto py-5 opacity-50">
                         <i class="ti ti-package-off text-secondary mb-2" style="font-size: 3rem;"></i>
                         <p class="hansip-font text-secondary small">INVENTARIO VACÍO // SIN SUMINISTROS</p>

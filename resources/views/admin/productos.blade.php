@@ -12,7 +12,7 @@
         </a>
     </div>
 
-    {{-- Buscador Reactivo en Tiempo Real (Ya no requiere botón Filtrar) --}}
+    {{-- Buscador Reactivo en Tiempo Real --}}
     <div class="mb-4 d-flex justify-content-start">
         <div class="input-group" style="max-width: 450px;">
             <span class="input-group-text bg-dark border-secondary text-secondary rounded-0 font-monospace" style="font-size: 0.85rem;">// LIVE SEARCH:</span>
@@ -30,6 +30,7 @@
                         <th>IMAGEN</th>
                         <th>SUMINISTRO</th>
                         <th>PRECIO</th>
+                        <th>STOCK</th> {{-- 👈 Cabecera integrada para que no se rompan las columnas --}}
                         <th class="text-center">PRINCIPAL</th>
                         <th class="text-center">ESTADO LÓGICO</th>
                         <th class="text-end">ACCIONES</th>
@@ -65,23 +66,50 @@
     .btn-outline-magenta:hover { background-color: #c80d55; color: white; }
 </style>
 
-{{-- 🧠 MOTOR JS FETCH (BÚSQUEDA ASÍNCRONA) --}}
 <script>
+    // 🧠 MOTOR JS FETCH (BÚSQUEDA ASÍNCRONA)
     document.getElementById('input-busqueda').addEventListener('input', function(e) {
         let valorBusqueda = e.target.value;
 
-        // Mandamos la petición invisible pasándole el parámetro por la URL
         fetch(`{{ route('admin.index') }}?buscar=${encodeURIComponent(valorBusqueda)}`, {
             headers: {
-                'X-Requested-With': 'XMLHttpRequest' // Le indica al AdminController que responda vía AJAX
+                'X-Requested-With': 'XMLHttpRequest'
             }
         })
         .then(response => response.text())
         .then(html => {
-            // Reemplazamos dinámicamente las filas del tbody sin alterar el resto de la web
             document.getElementById('contenedor-productos').innerHTML = html;
         })
         .catch(error => console.error('Error en el filtrado táctico:', error));
     });
+
+    // 🧠 FUNCIÓN GLOBAL: Ajuste de stock asíncrono (+ / -) con Token Corregido
+    function ajustarStock(id, accion) {
+        let url = accion === 'subir' ? `/admin/productos/${id}/stock-subir` : `/admin/productos/${id}/stock-bajar`;
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}', // 👈 CORREGIDO: Sin el prefijo duplicado
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la respuesta del servidor');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.error) {
+                console.error(data.error);
+            } else {
+                // Reemplazamos el contenedor del stock de esa fila en específico
+                document.getElementById(`status-stock-${id}`).innerHTML = data.status_html;
+            }
+        })
+        .catch(error => console.error('Error al actualizar stock:', error));
+    }
 </script>
 @endsection

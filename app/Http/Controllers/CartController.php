@@ -25,17 +25,29 @@ class CartController extends Controller
         return view('carrito', compact('cart', 'total'));
     }
 
-    // 2. Agregar Producto al Carrito
-    public function add($id)
+    // 2. Agregar Producto al Carrito (Con Validación de Unidades)
+    public function add(Request $request, $id)
     {
-        $producto = Producto::findOrFail($id); // Buscamos el ítem en DBeaver [cite: 103, 154]
+        // 1. Buscamos el suministro en DBeaver
+        $producto = Producto::findOrFail($id);
+
+        // 2. 🛡️ CONTROL DE INVENTARIO CRÍTICO: ¿Hay unidades disponibles?
+        if ($producto->stock <= 0) {
+            return redirect()->back()->with('error', "OPERACIÓN ABORTADA: No quedan unidades disponibles de {$producto->nombre} en el arsenal.");
+        }
+
+        // 3. Levantamos el carrito actual de la sesión
         $cart = session()->get('cart', []);
 
-        // Si el producto ya está en el carrito, le sumamos 1 a la cantidad
-        if(isset($cart[$id])) {
+        // 4. LÓGICA DE INSERCIÓN/INCREMENTO EN SESIÓN
+        if (isset($cart[$id])) {
+            // Control extra: que no intente agregar más de lo que hay físico
+            if ($cart[$id]['cantidad'] + 1 > $producto->stock) {
+                return redirect()->back()->with('error', "OPERACIÓN LIMITE: No podés equipar más unidades de las disponibles en stock ({$producto->stock} unidades).");
+            }
             $cart[$id]['cantidad']++;
         } else {
-            // Si es nuevo, lo agregamos con sus datos base de la BD
+            // Si es la primera unidad, armamos la estructura del item
             $cart[$id] = [
                 "nombre" => $producto->nombre,
                 "cantidad" => 1,
@@ -44,17 +56,27 @@ class CartController extends Controller
             ];
         }
 
-        session()->put('cart', $cart); // Guardamos el estado en la sesión
-        return redirect()->back()->with('success', '¡Suministro equipado al carrito!');
+        // Guardamos los cambios en la sesión de Laravel
+        session()->put('cart', $cart);
+
+        return redirect()->back()->with('success', "{$producto->nombre} fue acoplado a tu carrito de compras.");
     }
 
-   // 3. Confirmar Compra (Guarda en BD y prepara el Ticket)
+    // 3. Confirmar Compra (Guarda en BD, descuenta stock y prepara el Ticket)
     public function confirm()
     {
         $cart = session()->get('cart', []);
 
         if (empty($cart)) {
             return redirect()->back()->with('error', 'El carrito está vacío.');
+        }
+
+        // 🛡️ CANDADO DE SEGURIDAD FINAL: Verificar stock de todo el carrito antes de procesar el dinero
+        foreach ($cart as $productoId => $details) {
+            $prodDB = Producto::find($productoId);
+            if (!$prodDB || $prodDB->stock < $details['cantidad']) {
+                return redirect()->route('cart.index')->with('error', "STOCK INSUFICIENTES: El item '{$details['nombre']}' ya no cuenta con unidades bastantes en el depósito. Por favor, ajuste su orden.");
+            }
         }
 
         // A. Calculamos el total general
@@ -69,23 +91,28 @@ class CartController extends Controller
             'total' => $total
         ]);
 
-        // C. Iteramos para guardar el detalle fila por fila
+        // C. Iteramos para guardar el detalle fila por fila Y DESCONTAR STOCK REAL
         foreach($cart as $productoId => $details) {
+            // Guardamos el renglón de la factura
             DetalleVenta::query()->create([
                 'venta_id' => $nuevaVenta->id,
                 'producto_id' => $productoId,
                 'cantidad' => $details['cantidad'],
                 'precio_unitario' => $details['precio']
             ]);
+
+            // 📉 DESCUENTO TÁCTICO: Restamos las unidades compradas del stock físico en DBeaver
+            $prodDB = Producto::find($productoId);
+            $prodDB->stock = $prodDB->stock - $details['cantidad'];
+            $prodDB->save();
         }
 
         // FLASH METADATA: Guardamos temporalmente los datos del ticket para la vista de éxito
-        // Esto dura solo una carga de página (un F5 y desaparece)
         session()->flash('ticket_id', $nuevaVenta->id);
         session()->flash('ticket_productos', $cart);
         session()->flash('ticket_total', $total);
 
-        // D. Cumplimos la consigna: Vaciar el carrito de la sesión
+        // D. Vaciar el carrito de la sesión
         session()->forget('cart');
 
         // Redirigimos a la pantalla de confirmación táctica
@@ -95,11 +122,6 @@ class CartController extends Controller
     // 3.5 Vista de Operación Exitosa (Ticket de Despacho)
     public function exitosa()
     {
-        // Comentá estas líneas con doble barra para probar:
-        // if (!session()->has('ticket_id')) {
-        //     return redirect()->route('catalogo');
-        // }
-
         return view('operacion-exitosa');
     }
 

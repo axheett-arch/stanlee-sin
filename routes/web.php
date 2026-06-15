@@ -95,6 +95,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/productos/editar/{id}', [AdminController::class, 'edit'])->name('admin.edit');
     Route::put('/admin/productos/actualizar/{id}', [AdminController::class, 'update'])->name('admin.update');
 
+    // --- Ajuste rápido de Stock vía AJAX ---
+    Route::post('/admin/productos/{id}/stock-subir', [AdminController::class, 'stockSubir'])->name('admin.stock.subir');
+    Route::post('/admin/productos/{id}/stock-bajar', [AdminController::class, 'stockBajar'])->name('admin.stock.bajar');
+
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+    // --- Gestión de Contactos (Bandeja de Entrada Admin) ---
+    Route::get('/admin/contactos', [AdminController::class, 'contactosIndex'])->name('admin.contactos.index');
+    Route::post('/admin/contactos/{id}/leer', [AdminController::class, 'contactoLeer'])->name('admin.contactos.leer');
+    Route::delete('/admin/contactos/{id}', [AdminController::class, 'contactoDestroy'])->name('admin.contactos.destroy');
+
+    // Ruta para procesar la respuesta interna
+    Route::post('/admin/contactos/{id}/responder', [AdminController::class, 'contactoResponder'])->name('admin.contactos.responder');
 
 });
 

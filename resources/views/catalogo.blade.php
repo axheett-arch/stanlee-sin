@@ -11,16 +11,21 @@
         </p>
     </div>
 
-    {{-- ALERTAS DE ÉXITO O ERROR (Para avisar cuando se agrega algo al inventario) --}}
+    {{-- ALERTAS DE ÉXITO O ERROR --}}
     @if(session('success'))
         <div class="alert alert-success bg-black border-magenta text-magenta text-center hansip-font mb-4" style="font-size: 0.8rem; letter-spacing: 1px;">
             // {{ session('success') }}
         </div>
     @endif
+    @if(session('error'))
+        <div class="alert alert-danger bg-black border-danger text-danger text-center hansip-font mb-4" style="font-size: 0.8rem; letter-spacing: 1px;">
+            // {{ session('error') }}
+        </div>
+    @endif
 
     <div class="row g-4">
 
-        {{-- CARD DESTACADA (Cargada desde la Base de Datos) --}}
+        {{-- 🌟 CARD DESTACADA (Banner Superior Ancho) --}}
         @if(isset($destacado))
         <div class="col-12 mb-4">
             <div class="card-esencia p-0 overflow-hidden border-magenta card-glow" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(200,13,85,0.05) 100%);">
@@ -39,13 +44,19 @@
                             </div>
                             <p class="text-secondary fs-5 mb-4">{{ $destacado->descripcion }}</p>
 
-                            {{-- Formulario POST para agregar el producto destacado --}}
-                            <form action="{{ route('cart.add', $destacado->id) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-stanley-legend px-5 py-3 btn-glitch text-white border-0">
-                                    RECLAMAR RECOMPENSA
+                            {{-- Control de Stock para el Destacado --}}
+                            @if($destacado->stock > 0)
+                                <form action="{{ route('cart.add', $destacado->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-stanley-legend px-5 py-3 btn-glitch text-white border-0" style="background-color: #c80d55;">
+                                        RECLAMAR RECOMPENSA
+                                    </button>
+                                </form>
+                            @else
+                                <button type="button" class="btn btn-secondary font-monospace rounded-0 px-5 py-3" disabled style="cursor: not-allowed; opacity: 0.35;">
+                                    // RECOMPENSA AGOTADA
                                 </button>
-                            </form>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -53,7 +64,7 @@
         </div>
         @endif
 
-        {{-- BUCLE DE PRODUCTOS GENERALES (Eloquent Collection) --}}
+        {{-- 🛒 BUCLE DE PRODUCTOS GENERALES (Grilla Inferior) --}}
         @foreach($productos as $prod)
             @php
                 $esEspecial = ($prod->id % 3 == 0);
@@ -63,36 +74,40 @@
             @endphp
 
         <div class="col-md-4">
-            <div class="card-esencia h-100 p-0 overflow-hidden border-magenta {{ $hasGlow ? 'card-glow' : '' }}">
+            <div class="card-esencia h-100 p-0 overflow-hidden border-magenta {{ $hasGlow ? 'card-glow' : '' }} d-flex flex-column">
                 <div class="bg-black text-center p-4">
                     <img src="{{ asset('img/' . ($prod->url_imagen ?? 'izanagi.png')) }}" class="img-fluid img-catalog" style="{{ $imageFilter }}" alt="{{ $prod->nombre }}">
                 </div>
-                <div class="p-4 border-top border-secondary {{ $cardStyle }}">
 
-                    @if($cardStyle === 'bg-dark-gradient')
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h3 class="hansip-font h5 text-white mb-0">{{ $prod->nombre }}</h3>
-                            <span class="text-magenta fw-bold">${{ number_format($prod->precio, 0, ',', '.') }}</span>
-                        </div>
-                    @else
+                {{-- Cuerpo de la tarjeta --}}
+                <div class="p-4 border-top border-secondary {{ $cardStyle }} d-flex flex-column flex-grow-1 justify-content-between">
+                    <div>
                         <h3 class="hansip-font h5 text-white mb-2">{{ $prod->nombre }}</h3>
-                    @endif
-
-                    <p class="text-secondary small mb-3">{{ $prod->descripcion }}</p>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                        @if($cardStyle !== 'bg-dark-gradient')
-                            <span class="text-magenta fw-bold">${{ number_format($prod->precio, 0, ',', '.') }}</span>
-                        @endif
-
-                        {{-- Formulario POST para agregar el suministro al carrito --}}
-                        <form action="{{ route('cart.add', $prod->id) }}" method="POST" class="{{ $cardStyle === 'bg-dark-gradient' ? 'w-100' : '' }}">
-                            @csrf
-                            <button type="submit" class="btn btn-stanley-legend {{ $cardStyle === 'bg-dark-gradient' ? 'w-100' : 'px-3' }} py-1 btn-glitch text-white border-0" style="font-size: 0.7rem;">
-                                EQUIPAR
-                            </button>
-                        </form>
+                        <p class="text-secondary small mb-3">{{ $prod->descripcion }}</p>
                     </div>
+
+                    {{-- 🛡️ PIE DE TARJETA UNIFICADO Y RÍGIDO (Evita desajustes) --}}
+                    <div class="d-flex justify-content-between align-items-center mt-auto pt-2 w-100">
+                        {{-- El precio se queda fijo a la izquierda --}}
+                        <span class="text-magenta fw-bold">${{ number_format($prod->precio, 0, ',', '.') }}</span>
+
+                        {{-- El bloque del botón se alinea y bloquea simétricamente a la derecha --}}
+                        <div class="flex-grow-1 ms-3" style="max-width: 140px;">
+                            @if($prod->stock > 0)
+                                <form action="{{ route('cart.add', $prod->id) }}" method="POST" class="m-0">
+                                    @csrf
+                                    <button type="submit" class="btn text-white hansip-font rounded-0 w-100 py-2" style="background-color: #c80d55; font-size: 0.75rem;">
+                                        EQUIPAR SLES
+                                    </button>
+                                </form>
+                            @else
+                                <button type="button" class="btn btn-secondary font-monospace rounded-0 w-100 text-center py-2" disabled style="cursor: not-allowed; opacity: 0.35; font-size: 0.75rem;">
+                                    // AGOTADO
+                                </button>
+                            @endif
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

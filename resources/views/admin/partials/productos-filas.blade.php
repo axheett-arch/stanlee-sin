@@ -7,7 +7,32 @@
                  class="border border-secondary p-1">
         </td>
         <td class="fw-bold">{{ $producto->nombre }}</td>
+            {{-- Precio (Como referencia para saber dónde ubicarlo) --}}
         <td class="font-monospace text-secondary">${{ number_format($producto->precio, 0, ',', '.') }}</td>
+
+
+       {{-- Control Visual e Interactivo de Stock Físico --}}
+    <td>
+        <div class="d-flex align-items-center gap-2 font-monospace">
+            <button type="button" class="btn btn-sm btn-outline-secondary p-1 lh-1 rounded-0" onclick="ajustarStock('{{ $producto->id }}', 'bajar')">
+                <i class="ti ti-minus" style="font-size: 0.75rem;"></i>
+            </button>
+
+            <div id="status-stock-{{ $producto->id }}" style="min-width: 110px; text-align: center;">
+                @if($producto->stock == 0)
+                    <span class="text-danger fw-bold">// CRÍTICO (0 U)</span>
+                @elseif($producto->stock <= 5)
+                    <span class="text-warning fw-bold">// STOCK BAJO ({{ $producto->stock }} U)</span>
+                @else
+                    <span class="text-success">{{ $producto->stock }} U</span>
+                @endif
+            </div>
+
+            <button type="button" class="btn btn-sm btn-outline-success p-1 lh-1 rounded-0" onclick="ajustarStock('{{ $producto->id }}', 'subir')">
+                <i class="ti ti-plus" style="font-size: 0.75rem;"></i>
+            </button>
+        </div>
+    </td>
         <td class="text-center">
             <form action="{{ route('admin.destacar', $producto->id) }}" method="POST">
                 @csrf
