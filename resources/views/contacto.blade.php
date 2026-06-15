@@ -15,23 +15,23 @@
                     <div class="mb-4">
                         <p class="text-magenta hansip-font mb-1" style="font-size: 0.8rem; letter-spacing: 1px;">UBICACIÓN
                         </p>
-                        <p class="text-secondary">Corrientes Capital, Argentina.<br>Búnker de zona norte.</p>
+                        <p class="text-secondary">Corrientes Capital, Argentina.<br>Descartes 1184</p>
                     </div>
 
                     <div class="mb-4">
                         <p class="text-magenta hansip-font mb-1" style="font-size: 0.8rem; letter-spacing: 1px;">WHATSAPP
                         </p>
-                        <p class="text-secondary">+54 379 400-0000</p>
+                        <p class="text-secondary">+54 379 4546244</p>
                     </div>
 
                     <div class="mb-4">
                         <p class="text-magenta hansip-font mb-1" style="font-size: 0.8rem; letter-spacing: 1px;">EMAIL</p>
-                        <p class="text-secondary">crew@stanlee-sin.test</p>
+                        <p class="text-secondary">Axheett@gmail.com</p>
                     </div>
 
                     <div class="mt-5 p-3 border-start border-magenta bg-black">
-                        <p class="small text-white italic mb-0">"El dominio de uno mismo es el primer paso hacia la
-                            maestría."</p>
+                        <p class="small text-white italic mb-0">"Ponete en contacto con la Crew para personalizar tus
+                            herramientas de alta resistencia"</p>
                     </div>
                 </div>
             </div>

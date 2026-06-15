@@ -10,8 +10,8 @@
             </h1>
 
             <p class="mt-4 fs-4 text-secondary fw-light" style="max-width: 550px;">
-                La resistencia de un Stanley con el flow de Corrientes.
-                <span class="text-white fw-bold">StanLee Sin</span>: Mantené el calor mientras pateás la calle.
+                El flow de Corrientes combinado con la Resistencia de Stanley,
+                <span class="text-white fw-bold"> StanLee Sin</span>: Elige el diseño que mas te guste y unite a la comunidad
             </p>
 
             <div class="mt-5">

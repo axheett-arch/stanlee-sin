@@ -12,19 +12,22 @@
     <style>
         /* 🌟 EFECTO NEÓN PARA LAS PESTAÑAS ACTIVAS DEL ADMIN */
         .active-tactico {
-            background: linear-gradient(90deg, rgba(200, 13, 85, 0.15) 0%, rgba(0,0,0,0) 100%) !important;
+            background: linear-gradient(90deg, rgba(200, 13, 85, 0.15) 0%, rgba(0, 0, 0, 0) 100%) !important;
             color: #c80d55 !important;
             border-left: 3px solid #c80d55 !important;
             font-weight: bold;
         }
+
         .btn-delete-tactic:hover i {
             color: #dc3545 !important;
             transform: scale(1.15);
         }
+
         /* Flecha del colapsable */
         .dropdown-toggle::after {
             transition: transform 0.3s ease;
         }
+
         .dropdown-toggle[aria-expanded="true"]::after {
             transform: rotate(180deg);
         }
@@ -38,7 +41,8 @@
         <div class="container-fluid px-4">
             <div class="d-flex align-items-center">
                 {{-- Botón menú lateral izquierdo (hamburguesa) --}}
-                <button class="navbar-toggler border-0 p-0 me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral">
+                <button class="navbar-toggler border-0 p-0 me-3" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#menuLateral">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="navbar-brand hansip-font" href="/" style="color: #c80d55; font-size: 2.2rem;">
@@ -51,15 +55,15 @@
                 {{-- MENÚ PARA VISITANTES (NO LOGUEADOS) --}}
                 @guest
                     <a href="{{ route('register') }}"
-                       class="btn btn-sm hansip-font text-white px-3 py-2 text-decoration-none"
-                       style="background-color: #c80d55; border: none; font-size: 0.9rem; letter-spacing: 1px; transform: skewX(-10deg); display: inline-block; transition: 0.3s;">
-                       <span style="transform: skewX(10deg); display: inline-block;">UNIRSE A LA CREW</span>
+                        class="btn btn-sm hansip-font text-white px-3 py-2 text-decoration-none"
+                        style="background-color: #c80d55; border: none; font-size: 0.9rem; letter-spacing: 1px; transform: skewX(-10deg); display: inline-block; transition: 0.3s;">
+                        <span style="transform: skewX(10deg); display: inline-block;">UNIRSE A LA CREW</span>
                     </a>
 
                     <a href="{{ route('login') }}"
-                       class="btn btn-sm btn-outline-light hansip-font px-3 py-2 text-decoration-none"
-                       style="border: 2px solid white; background: transparent; color: white; font-size: 0.9rem; letter-spacing: 1px; transform: skewX(-10deg); display: inline-block; transition: 0.3s;">
-                       <span style="transform: skewX(10deg); display: inline-block;">INICIAR SESIÓN</span>
+                        class="btn btn-sm btn-outline-light hansip-font px-3 py-2 text-decoration-none"
+                        style="border: 2px solid white; background: transparent; color: white; font-size: 0.9rem; letter-spacing: 1px; transform: skewX(-10deg); display: inline-block; transition: 0.3s;">
+                        <span style="transform: skewX(10deg); display: inline-block;">INICIAR SESIÓN</span>
                     </a>
                 @endguest
 
@@ -69,38 +73,58 @@
                         // Contamos de forma dinámica cuántos suministros hay guardados en la sesión
                         $cart = session()->get('cart', []);
                         $totalItems = 0;
-                        foreach($cart as $item) {
+                        foreach ($cart as $item) {
                             $totalItems += $item['cantidad'];
                         }
                     @endphp
 
-                    {{-- ACCESO AL CARRITO / INVENTARIO TÁCTICO CON DESPLIEGUE LATERAL DERECHO --}}
-                    <button type="button" class="btn btn-sm btn-outline-light hansip-font px-3 py-2 text-decoration-none me-2 position-relative"
-                        data-bs-toggle="offcanvas" data-bs-target="#inventarioLateral" aria-controls="inventarioLateral"
-                        style="border: 2px solid #c80d55; background: transparent; color: white; font-size: 0.9rem; letter-spacing: 1px; transform: skewX(-10deg); display: inline-block; transition: 0.3s; cursor: pointer;">
-                        <span style="transform: skewX(10deg); display: inline-block;" class="d-flex align-items-center gap-1">
-                            <i class="ti ti-shopping-bag" style="font-size: 1.1rem; position: relative; top: -1px;"></i> INVENTARIO
-                        </span>
+                    {{-- 🛠️ Le clavamos list-style: none; para pulverizar el punto blanco --}}
+                    <li class="mb-1" style="list-style: none;">
+                        <button type="button"
+                            class="btn btn-sm btn-outline-light hansip-font px-3 py-2 text-decoration-none me-2 position-relative w-100"
+                            data-bs-toggle="offcanvas" data-bs-target="#inventarioLateral" aria-controls="inventarioLateral"
+                            style="border: 2px solid #c80d55; background: transparent; color: white; font-size: 0.9rem; letter-spacing: 1px; transform: skewX(-10deg); display: inline-block; transition: 0.3s; cursor: pointer; text-align: left;">
 
-                        {{-- Contador de productos flotante sobre el botón --}}
-                        @if($totalItems > 0)
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-0 hansip-font border border-black"
-                                style="font-size: 0.65rem; padding: 3px 6px; background-color: #c80d55; color: black; transform: skewX(10deg) translate(-5px, -5px);">
-                                {{ $totalItems }}
+                            <span style="transform: skewX(10deg); display: inline-block;"
+                                class="d-flex align-items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-cart me-1"
+                                    style="position: relative; top: -1px;">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M4 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                    <path d="M15 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                    <path d="M17 17h-11v-14h-2" />
+                                    <path d="M6 5l14 1l-1 7h-13" />
+                                </svg>
+                                INVENTARIO
                             </span>
-                        @endif
+                        </button>
+                    </li>
+
+                    {{-- Contador de productos flotante sobre el botón --}}
+                    @if ($totalItems > 0)
+                        <span
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-0 hansip-font border border-black"
+                            style="font-size: 0.65rem; padding: 3px 6px; background-color: #c80d55; color: black; transform: skewX(10deg) translate(-5px, -5px);">
+                            {{ $totalItems }}
+                        </span>
+                    @endif
                     </button>
 
                     <span class="text-white hansip-font me-3" style="font-size: 0.9rem; letter-spacing: 1px;">
-                        ¡HOLA, <span class="text-magenta" style="color: #c80d55;">{{ strtoupper(auth()->user()->name) }}</span>!
+                        ¡HOLA, <span class="text-magenta"
+                            style="color: #c80d55;">{{ strtoupper(auth()->user()->name) }}</span>!
                     </span>
 
                     <form action="{{ route('logout') }}" method="POST" class="m-0 p-0" style="display: inline;">
                         @csrf
                         <button type="submit"
-                                class="btn btn-sm btn-outline-light hansip-font px-3 py-2 text-decoration-none"
-                                style="border: 2px solid #c80d55; background: transparent; color: #c80d55; font-size: 0.9rem; letter-spacing: 1px; transform: skewX(-10deg); display: inline-block; transition: 0.3s; cursor: pointer;">
-                            <span style="transform: skewX(10deg); display: inline-block; color: #c80d55;">CERRAR SESIÓN</span>
+                            class="btn btn-sm btn-outline-light hansip-font px-3 py-2 text-decoration-none"
+                            style="border: 2px solid #c80d55; background: transparent; color: #c80d55; font-size: 0.9rem; letter-spacing: 1px; transform: skewX(-10deg); display: inline-block; transition: 0.3s; cursor: pointer;">
+                            <span style="transform: skewX(10deg); display: inline-block; color: #c80d55;">CERRAR
+                                SESIÓN</span>
                         </button>
                     </form>
                 @endauth
@@ -110,7 +134,8 @@
     </nav>
 
     {{-- PANEL LATERAL  (MENÚ GENERAL DE NAVEGACIÓN) --}}
-    <div class="offcanvas offcanvas-start bg-black text-white border-end border-magenta" tabindex="-1" id="menuLateral" style="width: 300px;">
+    <div class="offcanvas offcanvas-start bg-black text-white border-end border-magenta" tabindex="-1" id="menuLateral"
+        style="width: 300px;">
         <div class="offcanvas-header border-bottom border-secondary">
             <h5 class="offcanvas-title hansip-font" style="color: #c80d55;">StanLee Sin</h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
@@ -118,11 +143,6 @@
 
         <div class="offcanvas-body">
             <ul class="navbar-nav">
-
-                {{-- SECCIÓN PÚBLICA DEL SITIO --}}
-                <li class="nav-item mb-1">
-                    <span class="text-secondary small font-monospace d-block mb-1 px-2" style="font-size: 0.72rem;">// INTERFAZ PÚBLICA</span>
-                </li>
 
                 <li class="nav-item mb-2">
                     <a class="nav-link hansip-font fs-5 d-flex align-items-center px-2" href="/">
@@ -144,7 +164,8 @@
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="me-2" style="position: relative; top: -2px;">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304" />
+                            <path
+                                d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304" />
                             <path d="M9 11v-5a3 3 0 0 1 6 0v5" />
                         </svg>
                         <span>CATALOGO</span>
@@ -152,7 +173,8 @@
                 </li>
 
                 <li class="nav-item mb-2">
-                    <a class="nav-link hansip-font fs-5 d-flex align-items-center px-2 {{ Auth::check() ? '' : 'disabled opacity-50' }}" href="{{ route('compras.historial') }}">
+                    <a class="nav-link hansip-font fs-5 d-flex align-items-center px-2 {{ Auth::check() ? '' : 'disabled opacity-50' }}"
+                        href="{{ route('compras.historial') }}">
                         <i class="ti ti-history me-2" style="font-size: 1.5rem;"></i>
                         <span>MIS COMPRAS</span>
                     </a>
@@ -174,37 +196,41 @@
                 </li>
 
                 {{-- 🔒 DESPLEGABLE INTERACTIVO: GESTIÓN DE ADMINISTRACIÓN --}}
-                @if(Auth::check() && Auth::user()->is_admin == 1)
+                @if (Auth::check() && Auth::user()->is_admin == 1)
                     <li class="nav-item mb-2 border-top border-secondary pt-3 mt-3">
                         <a class="nav-link hansip-font fs-5 d-flex align-items-center text-magenta dropdown-toggle justify-content-between px-2"
-                           href="#menuAdminColapsable"
-                           data-bs-toggle="collapse"
-                           role="button"
-                           aria-expanded="{{ (request()->routeIs('admin.dashboard') || request()->routeIs('admin.index')) ? 'true' : 'false' }}"
-                           aria-controls="menuAdminColapsable">
+                            href="#menuAdminColapsable" data-bs-toggle="collapse" role="button"
+                            aria-expanded="{{ request()->routeIs('admin.dashboard') || request()->routeIs('admin.index') ? 'true' : 'false' }}"
+                            aria-controls="menuAdminColapsable">
                             <span class="d-flex align-items-center">
                                 <i class="ti ti-settings me-2" style="font-size: 1.5rem;"></i>
                                 GESTIÓN ADMIN
                             </span>
                         </a>
 
-                        <div class="collapse ps-3 mt-2 {{ (request()->routeIs('admin.dashboard') || request()->routeIs('admin.index') || request()->routeIs('admin.contactos.index')) ? 'show' : '' }}" id="menuAdminColapsable">
+                        <div class="collapse ps-3 mt-2 {{ request()->routeIs('admin.dashboard') || request()->routeIs('admin.index') || request()->routeIs('admin.contactos.index') ? 'show' : '' }}"
+                            id="menuAdminColapsable">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li class="mb-1">
-                                    <a href="{{ route('admin.dashboard') }}" class="nav-link font-monospace d-flex align-items-center py-2 px-2 rounded-0 {{ request()->routeIs('admin.dashboard') ? 'active-tactico' : 'text-secondary' }}">
+                                    <a href="{{ route('admin.dashboard') }}"
+                                        class="nav-link font-monospace d-flex align-items-center py-2 px-2 rounded-0 {{ request()->routeIs('admin.dashboard') ? 'active-tactico' : 'text-secondary' }}">
                                         <i class="ti ti-dashboard me-2" style="font-size: 1.1rem;"></i> DASHBOARD CORE
                                     </a>
                                 </li>
                                 <li class="mb-1">
-                                    <a href="{{ route('admin.index') }}" class="nav-link font-monospace d-flex align-items-center py-2 px-2 rounded-0 {{ request()->routeIs('admin.index') ? 'active-tactico' : 'text-secondary' }}">
-                                        <i class="ti ti-building-store me-2" style="font-size: 1.1rem;"></i> INVENTARIO CRUD
+                                    <a href="{{ route('admin.index') }}"
+                                        class="nav-link font-monospace d-flex align-items-center py-2 px-2 rounded-0 {{ request()->routeIs('admin.index') ? 'active-tactico' : 'text-secondary' }}">
+                                        <i class="ti ti-building-store me-2" style="font-size: 1.1rem;"></i>
+                                        INVENTARIO CRUD
                                     </a>
                                 </li>
 
                                 {{-- 📨 ENLACE REAL INTEGRADO A TU MENÚ --}}
                                 <li class="mb-1">
-                                    <a href="{{ route('admin.contactos.index') }}" class="nav-link font-monospace d-flex align-items-center py-2 px-2 rounded-0 {{ request()->routeIs('admin.contactos.index') ? 'active-tactico' : 'text-secondary' }}">
-                                        <i class="ti ti-message me-2" style="font-size: 1.1rem;"></i> CENTRAL CONSULTAS
+                                    <a href="{{ route('admin.contactos.index') }}"
+                                        class="nav-link font-monospace d-flex align-items-center py-2 px-2 rounded-0 {{ request()->routeIs('admin.contactos.index') ? 'active-tactico' : 'text-secondary' }}">
+                                        <i class="ti ti-message me-2" style="font-size: 1.1rem;"></i> CENTRAL
+                                        CONSULTAS
                                     </a>
                                 </li>
                             </ul>
@@ -215,7 +241,8 @@
                 <li class="my-3 border-bottom border-secondary opacity-25"></li>
 
                 <li class="nav-item mb-2">
-                    <a class="nav-link hansip-font fs-6 text-secondary d-flex align-items-center px-2" href="/comercializacion">
+                    <a class="nav-link hansip-font fs-6 text-secondary d-flex align-items-center px-2"
+                        href="/comercializacion">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="me-2" style="position: relative; top: -2px;">
@@ -229,7 +256,8 @@
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link hansip-font fs-6 text-secondary d-flex align-items-center px-2" href="/contacto">
+                    <a class="nav-link hansip-font fs-6 text-secondary d-flex align-items-center px-2"
+                        href="/contacto">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="me-2" style="position: relative; top: -2px;">
@@ -241,12 +269,14 @@
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link hansip-font fs-6 text-secondary d-flex align-items-center px-2" href="/consultas">
+                    <a class="nav-link hansip-font fs-6 text-secondary d-flex align-items-center px-2"
+                        href="/consultas">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="me-2" style="position: relative; top: -2px;">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12.802 2.165l5.575 2.389c.48 .206 .863 .589 1.07 1.07l2.388 5.574c.22 .512 .22 1.092 0 1.604l-2.389 5.575c-.206 .48 -.589 .863 -1.07 1.07l-5.574 2.388c-.512 .22 -1.092 .22 -1.604 0l-5.575 -2.389a2.036 2.036 0 0 1 -1.07 -1.07l-2.388 -5.574a2.036 2.036 0 0 1 0 -1.604l2.389 -5.575c.206 -.48 .589 -.863 1.07 -1.07l5.574 -2.388a2.036 2.036 0 0 1 1.604 0" />
+                            <path
+                                d="M12.802 2.165l5.575 2.389c.48 .206 .863 .589 1.07 1.07l2.388 5.574c.22 .512 .22 1.092 0 1.604l-2.389 5.575c-.206 .48 -.589 .863 -1.07 1.07l-5.574 2.388c-.512 .22 -1.092 .22 -1.604 0l-5.575 -2.389a2.036 2.036 0 0 1 -1.07 -1.07l-2.388 -5.574a2.036 2.036 0 0 1 0 -1.604l2.389 -5.575c.206 -.48 .589 -.863 1.07 -1.07l5.574 -2.388a2.036 2.036 0 0 1 1.604 0" />
                             <path d="M12 16v.01" />
                             <path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483" />
                         </svg>
@@ -254,12 +284,14 @@
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link hansip-font fs-6 text-secondary d-flex align-items-center px-2" href="/terminos">
+                    <a class="nav-link hansip-font fs-6 text-secondary d-flex align-items-center px-2"
+                        href="/terminos">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="me-2" style="position: relative; top: -2px;">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M15 21h-9a3 3 0 0 1 -3 -3v-1h10v2a2 2 0 0 0 4 0v-14a2 2 0 1 1 2 2h-2m2 -4h-11a3 3 0 0 0 -3 3v11" />
+                            <path
+                                d="M15 21h-9a3 3 0 0 1 -3 -3v-1h10v2a2 2 0 0 0 4 0v-14a2 2 0 1 1 2 2h-2m2 -4h-11a3 3 0 0 0 -3 3v11" />
                             <path d="M9 7l4 0" />
                             <path d="M9 11l4 0" />
                         </svg>
@@ -301,7 +333,8 @@
                         </svg>
                     </a>
 
-                    <a href="https://www.instagram.com/tiagotomasella_" target="_blank" class="nav-link p-0 social-icon">
+                    <a href="https://www.instagram.com/tiagotomasella_" target="_blank"
+                        class="nav-link p-0 social-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round">
@@ -312,12 +345,15 @@
                         </svg>
                     </a>
 
-                    <a href="https://www.tiktok.com/@kjdkejdkdid?lang=es" target="_blank" class="nav-link p-0 social-icon">
+                    <a href="https://www.tiktok.com/@kjdkejdkdid?lang=es" target="_blank"
+                        class="nav-link p-0 social-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-tiktok">
+                            stroke-linejoin="round"
+                            class="icon icon-tabler icons-tabler-outline icon-tabler-brand-tiktok">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917" />
+                            <path
+                                d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917" />
                         </svg>
                     </a>
                 </div>
@@ -326,8 +362,10 @@
     </div>
 
     {{-- FOOTER GENERADO --}}
-    <footer class="text-center py-4 mt-5 border-top border-secondary text-secondary" style="background: rgba(0,0,0,0.8);">
-        <p class="small mb-0">&copy; 2026 <span class="text-magenta hansip-font">StanLee Sin</span> - Axel Gomez & Tiago Tomasella</p>
+    <footer class="text-center py-4 mt-5 border-top border-secondary text-secondary"
+        style="background: rgba(0,0,0,0.8);">
+        <p class="small mb-0">&copy; 2026 <span class="text-magenta hansip-font">StanLee Sin</span> - Axel Gomez &
+            Tiago Tomasella</p>
         <p class="small opacity-50">Resistencia Legendaria en cada pixel.</p>
     </footer>
 
@@ -337,7 +375,9 @@
     </button>
 
     {{-- CONTENEDOR DE ALERTAS DE ESTADO GLOBAL --}}
-    <div id="status-container" style="position: fixed; top: 100px; left: 50%; transform: translateX(-50%); z-index: 9999; width: 90%; max-width: 400px;"></div>
+    <div id="status-container"
+        style="position: fixed; top: 100px; left: 50%; transform: translateX(-50%); z-index: 9999; width: 90%; max-width: 400px;">
+    </div>
 
     {{-- SCRIPTS COMPLEMENTARIOS --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -377,7 +417,8 @@
 
             const alerta = document.createElement('div');
             alerta.className = "hansip-font text-center py-3";
-            alerta.style.cssText = "background-color: #c80d55; color: white; border-radius: 8px; border: 2px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.5);";
+            alerta.style.cssText =
+                "background-color: #c80d55; color: white; border-radius: 8px; border: 2px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.5);";
             alerta.innerText = texto;
 
             container.appendChild(alerta);
@@ -392,33 +433,41 @@
 
     {{-- PANEL LATERAL DEL INVENTARIO (DESPLIEGUE DERECHO) --}}
     @auth
-        <div class="offcanvas offcanvas-end bg-black text-white border-start border-magenta" tabindex="-1" id="inventarioLateral" style="width: 380px;">
+        <div class="offcanvas offcanvas-end bg-black text-white border-start border-magenta" tabindex="-1"
+            id="inventarioLateral" style="width: 380px;">
             <div class="offcanvas-header border-bottom border-secondary">
-                <h5 class="offcanvas-title hansip-font" style="color: #c80d55;"><i class="ti ti-box"></i> MINI INVENTARIO</h5>
+                <h5 class="offcanvas-title hansip-font" style="color: #c80d55;"><i class="ti ti-box"></i> MINI INVENTARIO
+                </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
             </div>
 
             <div class="offcanvas-body d-flex flex-column justify-content-between">
-                @if(count($cart) > 0)
+                @if (count($cart) > 0)
                     <div class="overflow-y-auto flex-grow-1 pe-1" style="max-height: 70vh;">
                         @php $totalAcumulado = 0; @endphp
-                       @foreach($cart as $id => $details)
+                        @foreach ($cart as $id => $details)
                             @php $totalAcumulado += $details['precio'] * $details['cantidad']; @endphp
-                            <div class="d-flex align-items-center justify-content-between border-bottom border-secondary py-3">
+                            <div
+                                class="d-flex align-items-center justify-content-between border-bottom border-secondary py-3">
                                 <div class="d-flex align-items-center gap-3">
-                                    <img src="{{ asset('img/' . $details['imagen']) }}" style="width: 50px; height: 50px; object-fit: contain; background: #121212;" class="border border-secondary p-1">
+                                    <img src="{{ asset('img/' . $details['imagen']) }}"
+                                        style="width: 50px; height: 50px; object-fit: contain; background: #121212;"
+                                        class="border border-secondary p-1">
                                     <div>
                                         <h6 class="mb-0 small text-white fw-bold">{{ $details['nombre'] }}</h6>
-                                        <small class="text-secondary">{{ $details['cantidad'] }} x ${{ number_format($details['precio'], 0, ',', '.') }}</small>
+                                        <small class="text-secondary">{{ $details['cantidad'] }} x
+                                            ${{ number_format($details['precio'], 0, ',', '.') }}</small>
                                     </div>
                                 </div>
 
                                 <div class="d-flex align-items-center gap-3">
-                                    <span class="text-magenta small hansip-font">${{ number_format($details['precio'] * $details['cantidad'], 0, ',', '.') }}</span>
+                                    <span
+                                        class="text-magenta small hansip-font">${{ number_format($details['precio'] * $details['cantidad'], 0, ',', '.') }}</span>
 
                                     <form action="{{ route('cart.remove', $id) }}" method="POST" class="m-0 p-0">
                                         @csrf
-                                        <button type="submit" class="btn p-0 border-0 text-secondary btn-delete-tactic" title="Remover Suministro" style="background: transparent; cursor: pointer;">
+                                        <button type="submit" class="btn p-0 border-0 text-secondary btn-delete-tactic"
+                                            title="Remover Suministro" style="background: transparent; cursor: pointer;">
                                             <i class="ti ti-trash" style="font-size: 1.1rem; transition: 0.3s;"></i>
                                         </button>
                                     </form>
@@ -430,10 +479,12 @@
                     <div class="border-top border-secondary pt-3 mt-auto">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <span class="hansip-font small text-secondary">TOTAL ESTIMADO:</span>
-                            <span class="text-magenta h4 hansip-font">${{ number_format($totalAcumulado, 0, ',', '.') }}</span>
+                            <span
+                                class="text-magenta h4 hansip-font">${{ number_format($totalAcumulado, 0, ',', '.') }}</span>
                         </div>
                         <div class="d-grid gap-2">
-                            <a href="{{ route('cart.index') }}" class="btn btn-outline-light rounded-0 hansip-font py-2" style="font-size: 0.8rem; letter-spacing: 1px;">
+                            <a href="{{ route('cart.index') }}" class="btn btn-outline-light rounded-0 hansip-font py-2"
+                                style="font-size: 0.8rem; letter-spacing: 1px;">
                                 VER INVENTARIO COMPLETO
                             </a>
                             <form action="{{ route('cart.confirm') }}" method="POST">
@@ -454,4 +505,5 @@
         </div>
     @endauth
 </body>
+
 </html>
